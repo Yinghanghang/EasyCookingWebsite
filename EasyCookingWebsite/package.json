@@ -1,0 +1,29 @@
+{
+  "name": "easy-cooking-website",
+  "version": "0.0.1",
+  "description": "Website for sharing recipers - EasyCookingWebsite",
+  "main": "index.js",
+  "author": {
+    "name": "Trung Le"
+  },
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "flash": "^1.1.0",
+    "mongoose": "^6.0.7",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "routes": "^2.1.0"
+  }
+}

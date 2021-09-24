@@ -1,0 +1,32 @@
+{
+  "name": "simple-web-app1",
+  "version": "0.0.1",
+  "description": "SimpleWebApp1",
+  "main": "index.js",
+  "author": "Trung Le",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.7",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongodb": "^4.1.2",
+    "mongoose": "^6.0.7",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
+  },
+  "license": "ISC"
+}
