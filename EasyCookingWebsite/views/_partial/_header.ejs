@@ -4,18 +4,19 @@
 <head>
     <meta charset="utf-8" />
     <title>EasyCooking</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class=".navbar {margin-bottom: 0px;} navbar-default navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">Easy Cooking</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/home">Home</a></li>
-                <li><a href="/about">About</a></li>   
-        <% if(currentUser != null){ %>
+                <li><a href="/about">About</a></li>    
+        <% if(currentUser != null){ %> 
             <li><a href="/posts">My Posts</a></li>
             <li><a href="#">Welcome, <%= currentUser.username %>! </a></li>
             <li><a href="/logout">Logout</a></li>
@@ -28,7 +29,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container"></div>
 
     <% if(error && error.length > 0) { %>
         <div class="alert alert-danger" role="alert">
