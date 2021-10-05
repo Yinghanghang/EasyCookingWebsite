@@ -35,11 +35,11 @@ body {
 .tm-address-box { padding: 35px 30px 10px; }
 
 .tm-sidebar {
-    margin-top: 70px;
+    margin-top: 50px;
 	float: none;
 	width: 100%;
 	max-width: 100%;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .tm-body { 
@@ -81,8 +81,7 @@ body {
 
 .tm-nav-item {
 	list-style: none;
-	margin-bottom: 20px;
-	font-size: medium;
+	margin-bottom: 15px;
 	width: 100%;
 }
 
@@ -99,7 +98,6 @@ body {
 	border: 1px solid #000;
 	border-radius: 0;
 	color: #000;
-	;
 	display: block;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
@@ -170,7 +168,7 @@ body {
 .tm-banner-inner {
 	background-color: #b16946;
 	color: white;
-    height: 25px;
+    height: 30px;
 	padding: 35px 35px 45px;
 	text-align: center;
 	display: -webkit-box;

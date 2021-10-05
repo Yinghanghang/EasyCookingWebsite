@@ -10,16 +10,9 @@ var router = express.Router();
 
 router.get("/", function (req, res) {
     // console.log("hello I'm on the start page");
-    res.render("home/");
+    res.render("home/index");
 });
 
-router.get("/home", function (req, res) {
-    res.render("home/home");
-});
-
-router.get("/about", function (req, res) {
-    res.render("home/about");
-});
 
 router.get("/login", function (req, res) {
     res.render("home/login")
@@ -77,5 +70,13 @@ router.post("/signup", function (req, res, next) {
     failureRedirect: "/signup",
     failureFlash: true
 }));
+
+router.get("/result.ejs", function (req, res) {
+    res.render("home/result")
+});
+
+router.get("/recipe.ejs", function (req, res) {
+    res.render("home/recipe")
+});
 
 module.exports = router;
