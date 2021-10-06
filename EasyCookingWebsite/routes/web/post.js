@@ -94,4 +94,8 @@ router.post("/update", async function (req, res) {
 
 });
 
+router.get("/profile", function (req, res) {
+    res.render("user/profile")
+});
+
 module.exports = router;

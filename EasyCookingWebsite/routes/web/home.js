@@ -21,7 +21,7 @@ router.get("/login", function (req, res) {
 router.post("/login", passport.authenticate("login", {
     successRedirect: "/",  // success => direct to the homepage
     failureRedirect: "/login",
-    //failureFlash: true
+    failureFlash: true
 
 }));
 
@@ -46,7 +46,7 @@ router.post("/signup", function (req, res, next) {
     User.findOne({ email: email }, function (err, user) {
         if (err) { return next(err); }
         if (user) {
-            req.flash("error", "There's already an account with this email");
+            req.flash("error", "There is already an account with this email");
             return res.redirect("/signup");
         }
         if (password != repassword) {
@@ -72,12 +72,16 @@ router.post("/signup", function (req, res, next) {
     failureFlash: true
 }));
 
-router.get("/result.ejs", function (req, res) {
+router.get("/result", function (req, res) {
     res.render("home/result")
 });
 
-router.get("/recipe.ejs", function (req, res) {
+router.get("/recipe", function (req, res) {
     res.render("home/recipe")
+});
+
+router.get("/profile", function (req, res) {
+    res.render("user/profile")
 });
 
 
