@@ -21,12 +21,13 @@ router.get("/login", function (req, res) {
 router.post("/login", passport.authenticate("login", {
     successRedirect: "/",  // success => direct to the homepage
     failureRedirect: "/login",
-    failureFlash: true
+    //failureFlash: true
+
 }));
 
 router.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/home");
+    res.redirect("/");
 });
 
 
@@ -78,5 +79,6 @@ router.get("/result.ejs", function (req, res) {
 router.get("/recipe.ejs", function (req, res) {
     res.render("home/recipe")
 });
+
 
 module.exports = router;

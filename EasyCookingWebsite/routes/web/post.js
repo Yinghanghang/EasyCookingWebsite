@@ -19,7 +19,7 @@ router.get("/", function (req, res) {
 
 // get all post related to user._id
 router.get("/add", function (req, res) {
-    res.render("post/addpost");
+    res.render("post/addposts");
 });
 
 // add the new post

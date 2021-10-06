@@ -1,0 +1,31 @@
+.positionedSearch {
+    width: 220px;
+    height: 35px;
+    position: absolute;
+    top: 6px;
+    margin-left: -230px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    outline: 0;
+}
+
+.positionedSearch:hover, .positionedSearch:focus {
+    border: 2px solid sienna;
+    background-color: white;    
+  }
+
+  .navbar-brand {
+    margin-left: -20px;
+    margin-top: -5px;
+    font-family: Open Sans; font-size: 30px;
+    font-weight: bold; letter-spacing: -1px; line-height: 1;
+  }
+
+
+  .navbar-header img {
+    float: left;
+	  width:90px;
+    height:40px;
+    margin-top: 5px;
+    margin-left: -50px;
+  }

@@ -6,19 +6,20 @@
     <title>EasyCooking</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/login.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/_header.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 <body>
 
     <div class=".navbar {margin-bottom: 0px;} navbar-default navbar-static-top navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">Easy Cooking</a>
+            <div class="navbar-header"><img src="images/logo.png" alt="Image">
+                <a class="navbar-brand" href="/" style="color: #046307;">EasyCooking</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-        <% if(currentUser != null){ %> 
+            <li><input class="positionedSearch" type="search" placeholder="Search" aria-label="Search"></li>
+        <% if(currentUser != null){ %>           
             <li><a href="/posts">My Posts</a></li>
             <li><a href="#">Welcome, <%= currentUser.username %>! </a></li>
             <li><a href="/logout">Logout</a></li>
@@ -27,6 +28,8 @@
             <li><a href="/login">Log In</a></li>
             <li><a href="/signup">Sign Up</a><li>
         <%}%>
+
+        
             </ul>
         </div>
     </div>
