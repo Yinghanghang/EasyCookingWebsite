@@ -1,56 +1,38 @@
 <%- include('../_partial/_header'); -%>
-<div class="col-md-8">
-
-    <div class="panel panel-default">
-
-        <div class="panel-heading">
-            <h3>Sign Up</h3>
-        </div>
-        <div class="panel-body">
-            <form class="form-signin" method="POST" action="/signup">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="Username" name="username" aria-describedby="basic-addon1">
-                </div>
-                <br />
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">@</span>
-                    <input type="email" class="form-control" placeholder="Email address" name="email"
-                        aria-describedby="basic-addon1">
-                </div>
-                <br />
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
-                            aria-hidden="true"></span></span>
-                    <input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
-                </div>
-                <br />
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
-                            aria-hidden="true"></span></span>
-                    <input type="password" class="form-control" placeholder="Re-password"
-                        aria-describedby="basic-addon1" name="repassword">
-                </div>
-                <br />
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1"></span>
-                    <input type="text" class="form-control" placeholder="First name" name="firstname"
-                        aria-describedby="basic-addon1">
-                </div>
-                <br />
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1"></span>
-                    <input type="text" class="form-control" placeholder="Last name" name="lastname"
-                        aria-describedby="basic-addon1">
-                </div>
-
-                <input type="submit" class="btn btn-default navbar-btn" value="Sign Up" />
-
-            </form>
-        </div>
+<div class="bg-box">
+    <div class="register-box">
+        <form class="form-signin" method="POST" action="/signup"></form>
+            <div class="title-box">
+                <h2>Register</h2>
+            </div>
+            <div class="username-box">
+                <label for="username">Username</label>
+                <input type="text" id="username"/>
+            </div>
+            <div class="password-box">
+                <label for="password">Password</label>
+                <input type="password" id="password"/>
+            </div>
+            <div class="confirm-password-box">
+                <label for="confirm-password">Confirm password</label>
+                <input type="password" id="confirm-password"/>
+            </div>
+            <div class="email-box">
+                <label for="email">Email</label>
+                <input type="text" id="email"/>
+            </div>
+            <div class="firstname-box">
+                <label for="firstname">First name</label>
+                <input type="text" id="firstname"/>
+            </div>
+            <div class="lastname-box">
+                <label for="lastname">Last name</label>
+                <input type="text" id="lastname"/>
+            </div>
+            <div class="submit-box">
+                <input id="submit-button" type="button" value="Sign up">
+            </div>
+        </form>
     </div>
 </div>
-
-
-
 <%- include('../_partial/_footer'); -%>
