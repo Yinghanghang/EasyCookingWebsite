@@ -32,7 +32,7 @@ router.get("/logout", function (req, res) {
 
 
 router.get("/signup", function (req, res) {
-    res.render("home/register")
+    res.render("home/signup")
 });
 
 router.post("/signup", function (req, res, next) {
