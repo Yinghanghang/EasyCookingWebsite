@@ -32,7 +32,7 @@ router.get("/logout", function (req, res) {
 
 
 router.get("/signup", function (req, res) {
-    res.render("home/signup")
+    res.render("home/register")
 });
 
 router.post("/signup", function (req, res, next) {
@@ -50,7 +50,7 @@ router.post("/signup", function (req, res, next) {
             return res.redirect("/signup");
         }
         if (password != repassword) {
-            req.flash("error", "Password and Repassword are mismatch!");
+            req.flash("error", "Password and Re-password are mismatch!");
             return res.redirect("/signup");
         }
 

@@ -5,8 +5,19 @@
 <div class="col-md-4 col-sm-4 col-xs-12"></div>
 <div class="col-md-4 col-sm-4 col-xs-12">
         <div class="panel-body">
-            <form class="form-conatiner" method="POST" action="/login">
-                <h1 class = "text"> Log In</h1>
+            <form class="form-conatiner-2" method="POST" action="/login">
+                <% if(error && error.length > 0) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                
+                <% if(info && info.length > 0) { %>
+                    <div class="alert alert-info" role="alert">
+                        <%= info %>
+                    </div>
+                <% } %>
+                <h1 class = "text" style="color: #1b4d3e;"> Log In</h1>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">@</span> 
                     <input type="text" class="form-control" placeholder="Email" name="email" aria-describedby="basic-addon1">
@@ -18,7 +29,7 @@
                     <input type="password" class="form-control" placeholder="Password" name="password" aria-describedby="basic-addon1">
                 </div>
  
-                <input type="submit" class="btn btn-success .btn navbar-btn" value="Sign In" />
+                <input type="submit" class="btn  .btn navbar-btn" value="Sign In" />
  
             </form>
         </div>
@@ -28,4 +39,5 @@
 </div>
 
 </body>
+
 <%- include ('../_partial/_footer'); -%>

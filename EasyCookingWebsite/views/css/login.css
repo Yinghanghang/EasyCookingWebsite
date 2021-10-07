@@ -6,13 +6,15 @@
     padding: 8px 20px; 
     margin: 20px 0px 0px 1px;
     width:100%; 
+    background-color: #49796b;
+    color:#fff;
  }
 .bg{background: url('/images/bg.jpg') no-repeat; 
     width: 100%; height: 750px; 
     background-size: cover;   
 }
-.form-conatiner{width: 450px;    
-    border: 1px solid #fff; padding:50px 60px; margin-top: 30vh;
+.form-conatiner-2{width: 450px;    
+    border: 1px solid #fff; padding:50px 60px; margin-top: 30vh; margin-left: -5vh;
     -webkit-box-shadow: -1px 6px 26px 11px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 6px 26px 11px rgba(0,0,0,0.75);
     box-shadow: -1px 6px 26px 11px rgba(0,0,0,0.75);

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 
 <html>
 <head>
@@ -8,14 +8,15 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css">
     <link rel="stylesheet" type="text/css" href="/css/_header.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/signup.css">
     <link rel="stylesheet" type="text/css" href="/css/register.css">
 </head>
 <body>
 
-    <div class=".navbar {margin-bottom: 0px;} navbar-default navbar-static-top navbar-fixed-top" role="navigation">
+    <div class=".navbar {margin-bottom: 0px;} navbar-default navbar-static-top navbar-fixed-top" role="navigation" style="background-color: whitesmoke;" >
         <div class="container">
             <div class="navbar-header"><img src="/images/logo.png" alt="Image">
-                <a class="navbar-brand" href="/" style="color: #046307;">EasyCooking</a>
+                <a class="navbar-brand" href="/" style="color: #1b4d3e;">EasyCooking</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
             <li><input class="positionedSearch" type="search" placeholder="Search" aria-label="Search"></li>
@@ -37,14 +38,4 @@
 
     <div class="container"></div>
 
-    <% if(error && error.length > 0) { %>
-        <div class="alert alert-danger" role="alert">
-            <%= error %>
-        </div>
-    <% } %>
-
-    <% if(info && info.length > 0) { %>
-        <div class="alert alert-info" role="alert">
-            <%= info %>
-        </div>
-    <% } %>
+    
