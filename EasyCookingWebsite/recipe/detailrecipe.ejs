@@ -1,0 +1,66 @@
+<%- include('../_partial/_header') -%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="project-info-box mt-0">
+                <h5>Recipe Title</h5>
+                <p class="mb-0"><%= recipe.title %></p>
+            </div><!-- / project-info-box -->
+
+            <div class="project-info-box">
+                <p><b>Prep Time:</b> <%= recipe.prepareTime %> mins</p>
+                <p><b>Cook Time:</b> <%= recipe.cookingTime %> mins</p>
+                <p><b>Calories:</b> 3000 cal</p>
+                <p><b>difficulty:</b> <%= recipe.difficultLevel %></p>
+            </div><!-- / project-info-box -->
+
+            <div class="project-info-box mt-0 mb-0">
+                <p class="mb-0">
+                    <label>Like</label>
+                </p>
+            </div><!-- / project-info-box -->
+        </div><!-- / column -->
+
+        <div class="col-md-7">
+            <div id="myCarousel" class="carousel slide">
+                <!-- ???Carousel??? -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>   
+                <!-- ???Carousel??? -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="/images/food1.jpg" alt="First slide">
+                    </div>
+                    <div class="item">
+                        <img src="/images/food2.jpg" alt="Second slide">
+                    </div>
+                    <div class="item">
+                        <img src="/images/food3.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <!-- ???Carousel??? -->
+                <a class="carousel-control left" href="#myCarousel" 
+                   data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="carousel-control right" href="#myCarousel" 
+                   data-slide="next">&rsaquo;</a>
+            </div>
+            <!-- <img src="/images/food1.jpg" alt="project-image" class="rounded"> -->
+            <div class="project-info-box">
+                <p><b>Categories:</b> Soup, healthy</p>
+                <p><b>By:</b> <%= currentUser.username %></p>
+            </div><!-- / project-info-box -->
+        </div><!-- / column -->
+    </div>
+    <div class="ingredient-box">
+        <p><b>Ingredients:</b> Potatoes, beef, totatoes, red onion, cabbage</p>
+    </div>
+    <div class="instruction-box">
+        <p><b>Instructions: </b>
+        <%= recipe.cookingSteps %>
+        </p>
+    </div>
+</div>
+<%- include('../_partial/_footer') -%>
