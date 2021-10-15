@@ -81,7 +81,10 @@ router.get("/recipe", function (req, res) {
 });
 
 router.get("/profile", function (req, res) {
-    res.render("user/profile")
+    User.findOne({ userID: req.user._id }, function (err, user) {
+        if (err) { console.log(err); }
+        res.render("home/profile", { user: user });
+    });
 });
 
 
