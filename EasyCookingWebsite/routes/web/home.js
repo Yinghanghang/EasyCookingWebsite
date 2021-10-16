@@ -76,14 +76,14 @@ router.get("/result", function (req, res) {
     res.render("home/result")
 });
 
-router.get("/recipe", function (req, res) {
-    res.render("home/recipe")
+router.get("/detail", function (req, res) {
+    res.render("home/detail")
 });
 
 router.get("/profile", function (req, res) {
     User.findOne({ userID: req.user._id }, function (err, user) {
         if (err) { console.log(err); }
-        res.render("home/profile", { user: user });
+        res.render("user/profile", { user: user });
     });
 });
 
