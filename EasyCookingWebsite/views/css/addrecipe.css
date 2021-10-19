@@ -1,0 +1,30 @@
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-childl {
+    width: 40%;
+    float: left;
+    padding: 20px;
+    margin-left: 90px;
+    margin-right: 20px;
+    margin-top: 105px;
+
+}  
+
+.float-childr {
+    width: 40%;
+    float: left;
+    padding: 20px;
+    margin-top: 80px;
+}  
+
+.input-group{
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    margin: 0 .25em 32px 0;
+  }
+

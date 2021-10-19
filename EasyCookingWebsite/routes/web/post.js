@@ -4,12 +4,12 @@ var ensureAuthenticated = require("../../auth/auth").ensureAuthenticated;
 var Post = require("../../models/post");
 
 var router = express.Router();
-// add middleware ensureAuthenticated into router
+// add the entire ensureAuthenticator into router as middleware; all routes in this file will be authenticated
 router.use(ensureAuthenticated);
 
 // add middleware function ensureAuthenticated between "/posts" and "function
-router.get("/", function (req, res) {
-    // get all the post
+router.get("/", function (req, res) {  // go to the root of the route 
+    // get all the posts under the user id
     Post.find({ userID: req.user._id }).exec(function (err, posts) {
         if (err) { console.log(err); }
         // pass all posts under variable posts so we can use in view posts.ejs
@@ -25,12 +25,12 @@ router.get("/add", function (req, res) {
 // add the new post
 router.post("/add", function (req, res, next) {
     var newPost = new Post({
-        title: req.body.title,
+        title: req.body.title,  // retrieve data from user input
         content: req.body.content,
         userID: req.user._id    //include userid of signed in user
     });
 
-    newPost.save(function (err, post) {
+    newPost.save(function (err, post) {  // save the post to the database
         if (err) { console.log(err); }
         res.redirect("/posts");
     });
@@ -39,9 +39,9 @@ router.post("/add", function (req, res, next) {
 // /: means a route parameter it could be anything and it's often an ID
 // localhost:1337/post/12345 --. fetch the  post with id 12345
 router.get("/:postId", function (req, res) {
-    Post.findById(req.params.postId).exec(function (err, post) {
+    Post.findById(req.params.postId).exec(function (err, post) {  // params.postId need to be exact the same as /:postId
         if (err) { console.log(err); }
-        res.render("post/detailpost", { post: post });
+        res.render("post/detailpost", { post: post }); // pass the post associated with the postId to the view
     });
 });
 
@@ -86,6 +86,7 @@ router.post("/update", async function (req, res) {
         let savePost = await post.save();
         console.log("savepost", savePost);
         res.redirect("/posts/" + req.body.postid);
+        //res.render("post/detailpost", { post: savePost });
 
     } catch (err) {
         console.log("error happened");
@@ -99,3 +100,4 @@ router.get("/profile", function (req, res) {
 });
 
 module.exports = router;
+

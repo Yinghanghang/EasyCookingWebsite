@@ -15,7 +15,7 @@ router.use(function (req, res, next) {
 
 //use router
 router.use("/", require("./home"));
-router.use("/posts", require("./post"));
+router.use("/posts", require("./post")); // when go to posts, use post router file
 router.use("/recipes", require("./recipe"));
 
 module.exports = router;

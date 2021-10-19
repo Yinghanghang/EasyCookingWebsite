@@ -86,6 +86,6 @@ router.get("/profile", function (req, res) {
         res.render("user/profile", { user: user });
     });
 });
-
+ 
 
 module.exports = router;

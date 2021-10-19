@@ -1,10 +1,8 @@
 <%- include("../_partial/_header") -%>
-<div class = "container-fluid bg">
-<div class = "row">
-<div class="col-md-4 col-sm-4 col-xs-12"></div>
-<div class="col-md-4 col-sm-4 col-xs-12">
-    <div class="panel-body">
-        <form class="form-conatiner-r" action="/recipes/add" method="POST">
+
+    <div class="float-container bg">
+        <div class="col-md-10 col-sm-6 col-xs-12">
+        <form action="/recipes/add" method="POST">
             <% if(error && error.length > 0) { %>
                 <div class="alert alert-danger" role="alert">
                     <%= error %>
@@ -16,14 +14,17 @@
                     <%= info %>
                 </div>
             <% } %>
+
+            <div class="float-childl">
+ 
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">@</span>
+                <span class="input-group-addon" id="basic-addon1"></span>
                 <input type="text" class="form-control" placeholder="Title" name="title" aria-describedby="basic-addon1">
             </div>
             <br />
             
             <div class="input-group">
-                <span class="input" id="basic-addon1">Category</span><br/>
+                <span class="input" style="background-color:white; color: grey; font-weight: bold; font-size: large" id="basic-addon1">Category</span><br/><br/>
                 <input type="checkbox" name="category" value="Breakfast" checked>
                 <label  for="breakfast">Breakfast</label><br/>
                 <input type="checkbox" name="category" value="Lunch">
@@ -39,19 +40,22 @@
                 <input type="checkbox" name="category" value="Quick_Easy">
                 <label  for="breakfast">Quick&Easy</label><br/>
             </div>
+        </div>
             <br />
+          <div class="float-childr">
+
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">@</span>
+                <span class="input-group-addon" id="basic-addon1"></span>
                 <input type="text" name="prepareTime" class="form-control" placeholder="PrepareTime" aria-describedby="basic-addon1">
             </div>
             <br />
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">@</span>
+                <span class="input-group-addon" id="basic-addon1"></span>
                 <input type="text" name="cookingTime" class="form-control" placeholder="CookingTime" aria-describedby="basic-addon1">
             </div>
             <br />
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">@</span>
+                <span class="input-group-addon" id="basic-addon1"></span>
                 <textarea name="cookingSteps" id="cookingSteps" rows="4" cols="50" class="form-control" placeholder="CookingSteps" aria-describedby="basic-addon1"></textarea>
             </div>
             <br />
@@ -70,13 +74,10 @@
                 <input type="file" name="image">
             </div>
             <br />
-            <input type="submit" class="btn .btn navbar-btn" href="#" value="Create" />
-
+            <input type="submit" class="btn btnc navbar-btn" href="#" value="Create" />
+        </div>
         </form>
     </div>
-</div>
-    <div class="col-md-4 col-sm-4 col-xs-12"></div>
-</div>
-</div>
+    </div>
 
 <%- include("../_partial/_footer") -%>
