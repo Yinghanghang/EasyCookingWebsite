@@ -11,7 +11,7 @@ var Recipe = require("../../models/recipe");
 var router = express.Router();
 
 var storage = multer.diskStorage({
-    destination: "./uploads/images/",
+    destination: "./views/images/",
     filename: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
             // crypto take a randome byte, add date and extension name to orignal file   (cb(null) null for error)
@@ -41,17 +41,17 @@ router.get("/add", function (req, res) {
     res.render("recipe/addrecipe");
 });
 
-// handle when click Add new recipe => can't post
-router.post("/add", upload.single('image'), function (req, res) {
+// handle when click Add new recipe 
+router.post("/add", upload.single('image'), function (req, res) { // same name as addecipe.name = image
 
     var newRecipe = new Recipe({
         title: req.body.title,
-        cateogry: req.body.cateogry,
+        category: req.body.category,
         prepareTime: req.body.prepareTime,
         cookingTime: req.body.cookingTime,
         cookingSteps: req.body.cookingSteps,
         difficultLevel: req.body.difficultLevel,
-        //image: req.file.path,
+        image: req.file.path,
         userID:req.user._id,
     });
     
@@ -80,7 +80,12 @@ router.post("/update", upload.single('image'), async function (req, res) {
     const recipe = await Recipe.findById(req.body.recipeId);
 
     recipe.title = req.body.title;
-    recipe.description = req.body.description;
+    recipe.category = req.body.category;
+    recipe.prepareTime = req.body.prepareTime,
+    recipe.cookingTime = req.body.cookingTime;
+    recipe.cookingSteps = req.body.cookingSteps;
+    recipe.difficultLevel = req.body.difficultLevel,
+    recipe.userID = req.user._id,
     //handle upload file (use multer)
     recipe.image = req.file.path; // upload path where file is located
 

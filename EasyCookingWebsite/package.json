@@ -22,6 +22,7 @@
     "flash": "^1.1.0",
     "mongoose": "^6.0.9",
     "multer": "^1.4.3",
+    "node-libs-browser": "^2.2.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",

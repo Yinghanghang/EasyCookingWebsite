@@ -1,9 +1,25 @@
 var express = require("express");
+var multer = require("multer");
+var crypto = require("crypto");
+var path = require("path");
+
 var ensureAuthenticated = require("../../auth/auth").ensureAuthenticated;
 
 var Post = require("../../models/post");
 
 var router = express.Router();
+var storage = multer.diskStorage({
+    destination: './views/images/', 
+    filename : function(req, file, cb){
+        crypto.pseudoRandomBytes(16, function(err, raw){
+            cb(null, raw.toString('hex') + Date.now() + path.extname(file.originalname));
+        });
+    }
+});
+
+// pass storage object as parameter
+var upload = multer({storage: storage});
+
 // add the entire ensureAuthenticator into router as middleware; all routes in this file will be authenticated
 router.use(ensureAuthenticated);
 
@@ -74,11 +90,12 @@ router.get("/edit/:postId", function (req, res) {
 });*/
 
 // check what is different from above code and this
-router.post("/update", async function (req, res) {
+router.post("/update", upload.single('image'), async function (req, res) { // image is the name defined in ejs; upload.single() is a middleware function
     const post = await Post.findById(req.body.postid);
 
     post.title = req.body.title;
     post.content = req.body.content;
+    post.image = req.file.path;
 
     // post.save()
 

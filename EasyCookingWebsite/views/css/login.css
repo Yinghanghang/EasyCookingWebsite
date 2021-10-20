@@ -9,7 +9,7 @@
     background-color: #49796b;
     color:#fff;
  }
-.bg{background: url('/images/bg.jpg') no-repeat; 
+.bg{background: url('/views/images/bg.jpg') no-repeat; 
     width: 100%; height: 750px; 
     background-size: cover;   
 }

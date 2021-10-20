@@ -1,28 +1,68 @@
 <%- include("../_partial/_header") -%>
-<div class="row">
-    <div class="col-md-6">
-        <h1>Edit Recipe: <%= recipe.title%></h1>
-    </div>
-</div>
+<div class="float-container bg"> 
 
-<div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10 col-sm-6 col-xs-12">
         <form action="/recipes/update" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-
-                <label for="inputTitle">Title</label>
-                <input type="text" class="form-control" placeholder="Title" id="inputTitle" name="title" value="<%= recipe.title%>">
+            <div class="float-childl">
+ 
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"></span>
+                    <input type="text" class="form-control" placeholder="Title" name="title" aria-describedby="basic-addon1" value="<%= recipe.title%>">
+                </div>
+                <br />
+                
+                <div class="input-group">
+                    <span class="input" style="background-color:white; color: grey; font-weight: bold; font-size: large" id="basic-addon1">Category</span><br/><br/>
+                    <input type="checkbox" name="category" value="Breakfast" checked>
+                    <label  for="breakfast">Breakfast</label><br/>
+                    <input type="checkbox" name="category" value="Lunch">
+                    <label  for="breakfast">Lunch</label><br/>
+                    <input type="checkbox" name="category" value="Dinner">
+                    <label  for="breakfast">Dinner</label><br/>
+                    <input type="checkbox" name="category" value="Dessert">
+                    <label  for="breakfast">Dessert</label><br/>
+                    <input type="checkbox" name="category" value="Drinks">
+                    <label  for="breakfast">Drinks</label><br/>
+                    <input type="checkbox" name="category" value="Healthy">
+                    <label  for="breakfast">Healthy</label><br/>
+                    <input type="checkbox" name="category" value="Quick_Easy">
+                    <label  for="breakfast">Quick&Easy</label><br/>
+                </div>
             </div>
+                <br />
 
-            <div class="form-group">
-                <label for="inputDescription">Content</label>
-                <textarea class="form-control" rows="3" id="inputDescription" placeholder="Description" name="description"><%= recipe.description%></textarea>
-            </div>
+                <div class="float-childr">
 
-             <div class="form-group">
-                <label for="imageUpload">Upload</label>
-                <input type="file" name = "image"/>
-            </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"></span>
+                        <input type="text" name="prepareTime" class="form-control" placeholder="PrepareTime" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"></span>
+                        <input type="text" name="cookingTime" class="form-control" placeholder="CookingTime" aria-describedby="basic-addon1">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"></span>
+                        <textarea name="cookingSteps" id="cookingSteps" rows="4" cols="50" class="form-control" placeholder="CookingSteps" aria-describedby="basic-addon1"><%=recipe.cookingSteps%></textarea>
+                    </div>
+                    <br />
+                     <div class="input-group">
+                         <span class="input-group-addon" id="basic-addon1">Difficult Level</span>
+                         <select name="difficultLevel" id="difficultLevel" class="form-control" aria-describedby="basic-addon1">
+                              <option value="supereasy" selected>super easy</option>
+                              <option value="easy">easy</option>
+                              <option value="normal">normal</option>
+                              <option value="hard">hard</option>
+                              <option value="superhard">super hard</option>
+                          </select>
+                      </div>
+                    <br />
+                    <div class="input-group">
+                        <input type="file" name="image">
+                    </div>
+                    <br />
 
             <input type="hidden" id="recipeId" name="recipeId" value="<%= recipe._id%>"/>
             
@@ -33,6 +73,7 @@
     </div>
 
     </form>
+    </div>
 </div>
 
 

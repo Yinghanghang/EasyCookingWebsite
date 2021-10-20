@@ -4,7 +4,7 @@ var postSchema = mongoose.Schema({
     title: { type: String, required: true },
     content: { type: String, required: false },
     createAt: { type: Date, default: Date.now },
-    image: { type: mongoose.Schema.Types.ObjectId, required: false, unique: false },
+    image: { type: String, required: false, unique: false },
     userID: { type: mongoose.Schema.Types.ObjectId, required: false, unique: false },
     public: { type: Boolean, default: false, required: false, unique: false }
 });
