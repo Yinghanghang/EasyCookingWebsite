@@ -85,6 +85,7 @@ router.get("/update/:recipeId", function (req, res) {
 router.post("/update", upload.array('image', 12), async function (req, res) {
     const recipe = await Recipe.findById(req.body.recipeId);
     const files = req.files;
+    var currentFiles = recipe.image;
 
     recipe.title = req.body.title;
     recipe.category = req.body.category;
@@ -97,8 +98,9 @@ router.post("/update", upload.array('image', 12), async function (req, res) {
     if (files != null) {
         //handle upload file (use multer)
         recipe.image = files; // upload path where file is located
+    } else {
+        recipe.image = currentFiles;
     }
-
 
     try {
         let saveRecipe = await recipe.save();

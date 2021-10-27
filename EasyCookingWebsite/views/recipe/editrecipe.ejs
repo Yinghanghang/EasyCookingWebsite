@@ -1,78 +1,117 @@
 <%- include("../_partial/_header") -%>
-<div class="float-container bg"> 
+<div class="float-container bg">
 
     <div class="col-md-10 col-sm-6 col-xs-12">
         <form action="/recipes/update" method="POST" enctype="multipart/form-data">
             <div class="float-childl">
- 
+
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
                     <input type="text" class="form-control" placeholder="Title" name="title" aria-describedby="basic-addon1" value="<%= recipe.title%>">
                 </div>
                 <br />
-                
+
                 <div class="input-group">
-                    <span class="input" style="background-color:white; color: grey; font-weight: bold; font-size: large" id="basic-addon1">Category</span><br/><br/>
-                    <input type="checkbox" name="category" value="Breakfast" checked>
-                    <label  for="breakfast">Breakfast</label><br/>
-                    <input type="checkbox" name="category" value="Lunch">
-                    <label  for="breakfast">Lunch</label><br/>
-                    <input type="checkbox" name="category" value="Dinner">
-                    <label  for="breakfast">Dinner</label><br/>
-                    <input type="checkbox" name="category" value="Dessert">
-                    <label  for="breakfast">Dessert</label><br/>
-                    <input type="checkbox" name="category" value="Drinks">
-                    <label  for="breakfast">Drinks</label><br/>
-                    <input type="checkbox" name="category" value="Healthy">
-                    <label  for="breakfast">Healthy</label><br/>
-                    <input type="checkbox" name="category" value="Quick_Easy">
-                    <label  for="breakfast">Quick&Easy</label><br/>
+                    <span class="input" style="background-color:white; color: grey; font-weight: bold; font-size: large" id="basic-addon1">Category</span><br /><br />
+                        <% if(recipe.category.includes('Breakfast')){ %>
+                            <input type="checkbox" name="category" value="Breakfast" checked>
+                        <% }else{ %>
+                            <input type="checkbox" name="category" value="Breakfast">
+                         <% } %>
+                            <label for="breakfast">Breakfast</label><br />
+                        <% if(recipe.category.includes('Lunch')){ %>
+                            <input type="checkbox" name="category" value="Lunch" checked>
+                        <% }else{ %>
+                            <input type="checkbox" name="category" value="Lunch">   
+                        <% } %>
+                            <label for="lunch">Lunch</label><br />
+                        <% if(recipe.category.includes('Dinner')){ %>
+                            <input type="checkbox" name="category" value="Dinner" checked>
+                        <% }else{ %>
+                            <input type="checkbox" name="category" value="Dinner">                               
+                        <% } %>
+                            <label for="dinner">Dinner</label><br />
+                        <% if(recipe.category.includes('Dessert')){ %>
+                            <input type="checkbox" name="category" value="Dessert" checked>
+                         <% }else{ %>
+                            <input type="checkbox" name="category" value="Dessert">                            
+                        <% } %>
+                        <label for="dessert">Dessert</label><br />
+                        <% if(recipe.category.includes('Drinks')){ %>
+                            <input type="checkbox" name="category" value="Drinks" checked>
+                         <% }else{ %>
+                            <input type="checkbox" name="category" value="Drinks">      
+                        <% } %>
+                        <label for="drinks">Drinks</label><br />
+                        <% if(recipe.category.includes('Healthy')){ %>
+                            <input type="checkbox" name="category" value="Healthy" checked>
+                        <% }else{ %>
+                            <input type="checkbox" name="category" value="Healthy">        
+                        <% } %>
+                        <label for="healthy">Healthy</label><br />
+                        <% if(recipe.category.includes('Quick_Easy')){ %>
+                            <input type="checkbox" name="category" value="Quick_Easy" checked>
+                         <% }else{ %>
+                            <input type="checkbox" name="category" value="Quick_Easy">                     
+                        <% } %>
+                        <label for="quickeasy">Quick&Easy</label><br />
                 </div>
             </div>
+            <br />
+
+            <div class="float-childr">
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"></span>
+                    <input type="text" name="prepareTime" class="form-control" aria-describedby="basic-addon1" value="<%= recipe.prepareTime %>">
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"></span>
+                    <input type="text" name="cookingTime" class="form-control" aria-describedby="basic-addon1" value="<%= recipe.cookingTime %>">
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"></span>
+                    <input type="text" name="ingredient" class="form-control" aria-describedby="basic-addon1" value="<%= recipe.ingredient %>">
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"></span>
+                    <textarea name="cookingSteps" id="cookingSteps" rows="4" cols="50" class="form-control" aria-describedby="basic-addon1"><%=recipe.cookingSteps%></textarea>
+                </div>
+                <br />
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Difficult Level</span>
+                    <select name="difficultLevel" id="difficultLevel" class="form-control" aria-describedby="basic-addon1">
+                        <% if(recipe.difficultLevel == 'supereasy'){ %>
+                            <option value="supereasy" selected>super easy</option>
+                        <% }else if(recipe.difficultLevel == 'easy'){ %>
+                            <option value="easy" selected>easy</option>
+                        <% } else if(recipe.difficultLevel == "normal"){%>
+                            <option value="normal" selected>normal</option>
+                        <%}else if(recipe.difficultLevel == "hard"){%>
+                            <option value="hard" selected>hard</option>
+                        <%}else{%>
+                            <option value="superhard" selected>super hard</option>
+                        <%}%>
+                    </select>
+                </div>
+                <br />
+                <div class="input-group">
+                    <input type="file" name="image">
+                </div>
                 <br />
 
-                <div class="float-childr">
+                <input type="hidden" id="recipeId" name="recipeId" value="<%= recipe._id%>" />
 
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1"></span>
-                        <input type="text" name="prepareTime" class="form-control" placeholder="PrepareTime" aria-describedby="basic-addon1">
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1"></span>
-                        <input type="text" name="cookingTime" class="form-control" placeholder="CookingTime" aria-describedby="basic-addon1">
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1"></span>
-                        <textarea name="cookingSteps" id="cookingSteps" rows="4" cols="50" class="form-control" placeholder="CookingSteps" aria-describedby="basic-addon1"><%=recipe.cookingSteps%></textarea>
-                    </div>
-                    <br />
-                     <div class="input-group">
-                         <span class="input-group-addon" id="basic-addon1">Difficult Level</span>
-                         <select name="difficultLevel" id="difficultLevel" class="form-control" aria-describedby="basic-addon1">
-                              <option value="supereasy" selected>super easy</option>
-                              <option value="easy">easy</option>
-                              <option value="normal">normal</option>
-                              <option value="hard">hard</option>
-                              <option value="superhard">super hard</option>
-                          </select>
-                      </div>
-                    <br />
-                    <div class="input-group">
-                        <input type="file" name="image">
-                    </div>
-                    <br />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default" href="#" role="button">Update</button>
+                </div>
 
-            <input type="hidden" id="recipeId" name="recipeId" value="<%= recipe._id%>"/>
-            
-            <div class="form-group">
-                <button type="submit" class="btn btn-default" href="#" role="button">Update</button>
             </div>
 
-    </div>
-
-    </form>
+        </form>
     </div>
 </div>
 
