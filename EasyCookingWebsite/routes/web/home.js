@@ -9,8 +9,10 @@ var router = express.Router();
 
 
 router.get("/", function (req, res) {
-    // console.log("hello I'm on the start page");
-    res.render("home/index");
+    Recipe.find().exec(function (err, recipes) {
+        if (err) { console.log(err); }
+        res.render("home/index", { recipes: recipes });
+    });
 });
 
 
