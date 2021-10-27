@@ -1,0 +1,33 @@
+<%- include("../_partial/_header") -%>
+
+<div class="wrapper">
+    <div class="left">
+        <img src="images/logo.png" 
+        alt="user" width="200">
+        <h4><%= user.firstname %> <%= user.lastname %><br/><%= user.username %></h4>
+        <div class="info_data">
+        </div>
+     </div>
+    
+    <div class="right">
+        <div class="info">
+            <h3>Information</h3>
+            <div class="info_data">
+                  <div class="data">
+                    <h4>Username </h4>
+                    <p><%= user.username %></p>
+                  </div>
+                 <div class="data">
+                    <h4>Email</h4>
+                    <p><%= user.email %></p>
+                 </div>
+                <div class="data">
+                    <h4>Created At </h4>
+                    <p><%= user.createdAt %></p>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../_partial/_footer") -%>
