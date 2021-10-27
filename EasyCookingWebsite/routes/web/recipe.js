@@ -27,7 +27,7 @@ var upload = multer({ storage: storage });
 router.use(ensureAuthenticated);
 
 // add middleware function ensureAuthenticated between "/recipes" and "function => done
-router.get("/", function (req, res) {   // "/", go to the route of the page, then we can have <webiste>/posts
+router.get("/", function (req, res) {   // "/", go to the route of the page, then we can have <webiste>/recipes
     // get all the post
     Recipe.find({ userID: req.user._id }).exec(function (err, recipes) {
         if (err) { console.log(err); }
@@ -62,12 +62,6 @@ router.post("/add", upload.single('image'), function (req, res) { // same name a
     });
 });
 
-router.get("/:recipeId", function (req, res) {
-    Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
-        if (err) { console.log(err); }
-        res.render("recipe/detailrecipe", { recipe: recipe });
-    });
-});
 
 router.get("/update/:recipeId", function (req, res) {
     Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
@@ -99,6 +93,13 @@ router.post("/update", upload.single('image'), async function (req, res) {
         res.status(500).send(err);
     }
 
+});
+
+router.get("/detail/:recipeId", function (req, res) {
+    Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
+        if (err) { console.log(err); }
+        res.render("recipe/detailrecipe", { recipe: recipe });
+    });
 });
 
 module.exports = router;

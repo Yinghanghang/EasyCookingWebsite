@@ -2,17 +2,37 @@ var express = require("express");
 var passport = require("passport");
 // add 
 var ensureAuthenticated = require("../../auth/auth").ensureAuthenticated;
+var multer = require("multer");
+var crypto = require("crypto");
+var path = require("path");
 
 var User = require("../../models/user");
+var Recipe = require("../../models/recipe");
 
 var router = express.Router();
 
-
 router.get("/", function (req, res) {
     // console.log("hello I'm on the start page");
-    res.render("home/index");
+    Recipe.find().exec(function (err, recipes) {
+        if (err) { console.log(err); }
+        res.render("home/index", { recipes: recipes });
+  });
 });
 
+router.get("/result", function (req, res) {
+    Recipe.find().exec(function (err, recipe) {
+        if (err) { console.log(err); }
+        res.render("home/result", { recipes: recipe });
+  });
+});
+
+router.get("/result/:category", function (req, res) {
+    Recipe.find({category : req.params.category}).exec(function (err, recipe) {
+        if (err) { console.log(err); }
+        //console.log(req.params.category);
+        res.render("home/result", { recipes: recipe, category: req.params.category });
+  });
+});
 
 router.get("/login", function (req, res) {
     res.render("home/login")
@@ -72,13 +92,6 @@ router.post("/signup", function (req, res, next) {
     failureFlash: true
 }));
 
-router.get("/result", function (req, res) {
-    res.render("home/result")
-});
-
-router.get("/detail", function (req, res) {
-    res.render("home/detail")
-});
 
 router.get("/profile", function (req, res) {
     User.findOne({ userID: req.user._id }, function (err, user) {
@@ -86,6 +99,18 @@ router.get("/profile", function (req, res) {
         res.render("user/profile", { user: user });
     });
 });
- 
+
+// Must be the last one in order for ":" to match
+router.get("/home/:recipeId", function (req, res) {
+    Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
+        if (err) { console.log(err); }
+        User.findById(recipe.userID).exec(function (err, user) {
+            if (err) { console.log(err); }   
+            name = user.username;
+            res.render("home/detail", { recipe: recipe, username: name });
+        });
+        //res.render("home/detail", { recipe: recipe });
+    });
+});
 
 module.exports = router;

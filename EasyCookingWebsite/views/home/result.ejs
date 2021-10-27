@@ -11,19 +11,19 @@
             </section>
             <nav class="tm-main-nav">
                 <ul class="tm-main-nav-ul">
-                    <li class="tm-nav-item"><a href="/result" class="tm-nav-item-link tm-button">Breakfast</a>
+                    <li class="tm-nav-item"><a href="/result/Breakfast" class="tm-nav-item-link tm-button">Breakfast</a>
                     </li>
-                    <li class="tm-nav-item"><a href="/result" class="tm-nav-item-link tm-button">Lunch</a>
+                    <li class="tm-nav-item"><a href="/result/Lunch" class="tm-nav-item-link tm-button">Lunch</a>
                     </li>
-                    <li class="tm-nav-item"><a href="/result" class="tm-nav-item-link tm-button">Dinner</a>
+                    <li class="tm-nav-item"><a href="/result/Dinner" class="tm-nav-item-link tm-button">Dinner</a>
                     </li>
-                    <li class="tm-nav-item"><a href="/result" class="tm-nav-item-link tm-button">Dessert</a>
+                    <li class="tm-nav-item"><a href="/result/Dessert" class="tm-nav-item-link tm-button">Dessert</a>
                     </li>
-                    <li class="tm-nav-item"><a href="/result" class="tm-nav-item-link tm-button">Drinks</a>
+                    <li class="tm-nav-item"><a href="/result/Drinks" class="tm-nav-item-link tm-button">Drinks</a>
                     </li>
-                    <li class="tm-nav-item"><a href="/result" class="tm-nav-item-link tm-button">Healthy</a>
+                    <li class="tm-nav-item"><a href="/result/Healthy" class="tm-nav-item-link tm-button">Healthy</a>
                     </li>
-                    <li class="tm-nav-item"><a href="/result" class="tm-nav-item-link tm-button">Quick & Easy</a>
+                    <li class="tm-nav-item"><a href="/result/Quick_Easy" class="tm-nav-item-link tm-button">Quick & Easy</a>
                     </li>
                 </ul>
             </nav>
@@ -31,40 +31,28 @@
         
         <div class="tm-main-content tm-gallery-container">   
             <div class="col-md-offset-2 col-md-8 col-sm-12 text-center">
-				<h2 style= "color: #CC6733">Result</h2> 
+				<h2 style= "color:#008080; font-style:italic"><%= category %></h2> 
 				<hr>
             </div>
-            <div class="grid">  
-                <div class="column">                                      
-                    <a href="/detail"><img src="views/images/food1.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3 >
-                    <a href="/detail"><img src="views/images/food2.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>
-                    <a href="/detail"><img src="views/images/food3.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>      
-                    <a href="/detail"><img src="views/images/food4.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>  
-                    <a href="/detail"><img src="views/images/food5.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>      
-                    <a href="/detail"><img src="views/images/food6.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>                    
 
+                <!-- List all the recipes -->
+            <% recipes.forEach(function(recipe) { %>
+                <div class="col-sm-4 col-md-6">
+                    <div class="thumbnail">
+                        <% if(recipe.image != null) {%>
+                            <a href="/<%= recipe._id %>"><img src="<%= '/' + recipe.image %>" height="250px" /></a>
+                        <% }else{ %>
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDE5MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTcyYWQ2ZmYwZmQgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNzJhZDZmZjBmZCI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI3MC4wNTQ2ODc1IiB5PSIxMDQuNTYwOTM3NSI+MTkyeDIwMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg=="
+                                alt="logo"
+                                style="height:200px;width:100%;display:block">
+                        <% } %>
+                        <div class="caption">
+                            <h3 style="text-align:center"><%= recipe.title %></h3>
+                        </div>
+                    </div>
                 </div>
-                <div class="column">                                     
-                    <a href="/detail"><img src="views/images/food7.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3 >
-                    <a href="/detail"><img src="views/images/food8.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>
-                    <a href="/detail"><img src="views/images/food9.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>  
-                    <a href="/detail"><img src="views/images/food10.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>  
-                    <a href="/detail"><img src="views/images/food11.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>      
-                    <a href="/detail"><img src="views/images/food12.jpg" alt="Image"></a>
-                    <h3>Lemon-Rosemary Prawn</h3>                                   
-                </div>
-            </div>         
+                <% }) %>
+                   
         </div><!-- tm-main-content -->
     </div>
 </div> 

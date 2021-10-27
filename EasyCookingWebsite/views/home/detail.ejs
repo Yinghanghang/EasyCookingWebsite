@@ -3,19 +3,18 @@
     <div class="row">
         <div class="col-md-5">
             <div class="project-info-box mt-0">
-                <h5>PROJECT DETAILS</h5>
-                <p class="mb-0">Vivamus pellentesque, felis in aliquam ullamcorper, lorem tortor porttitor erat, hendrerit porta nunc tellus eu lectus. Ut vel imperdiet est. Pellentesque condimentum, dui et blandit laoreet, quam nisi tincidunt tortor.</p>
+                <p class="mb-0" style="color: #1b4d3e;font-size:20px;font-weight: bold;"><%= recipe.title %></p>
             </div><!-- / project-info-box -->
 
             <div class="project-info-box">
-                <p><b>Prep Time:</b> 15 mins</p>
-                <p><b>Cook Time:</b> 1 hr</p>
-                <p><b>Calories:</b> 3000 cal</p>
-                <p><b>difficulty:</b> 3.5/5</p>
+                <p style="font-size:16px"><b>Prep Time:</b> <%= recipe.prepareTime %> mins</p>
+                <p style="font-size:16px"><b>Cook Time:</b> <%= recipe.cookingTime %> mins</p>
+                <p style="font-size:16px"><b>Calories:</b> 3000 cal</p>
+                <p style="font-size:16px"><b>Difficulty:</b> <%= recipe.difficultLevel %></p>
             </div><!-- / project-info-box -->
 
             <div class="project-info-box mt-0 mb-0">
-                <p class="mb-0">
+                <p class="mb-0" style="font-size:16px">
                     <label>Like</label>
                 </p>
             </div><!-- / project-info-box -->
@@ -32,13 +31,13 @@
                 <!-- 轮播（Carousel）项目 -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="views/images/food1.jpg" alt="First slide">
+                        <img src="<%= '/' +  recipe.image %>"/>" alt="First slide">
                     </div>
                     <div class="item">
-                        <img src="views/images/food2.jpg" alt="Second slide">
+                        <img src="/views/images/food2.jpg" alt="Second slide">
                     </div>
                     <div class="item">
-                        <img src="views/images/food3.jpg" alt="Third slide">
+                        <img src="/views/images/food3.jpg" alt="Third slide">
                     </div>
                 </div>
                 <!-- 轮播（Carousel）导航 -->
@@ -49,16 +48,18 @@
             </div>
             <!-- <img src="/images/food1.jpg" alt="project-image" class="rounded"> -->
             <div class="project-info-box">
-                <p><b>Categories:</b> Soup, healthy</p>
-                <p><b>By:</b> David</p>
+                <p style="font-size:16px"><b>Categories: </b> <% for (var i = 0; i < recipe.category.length; i++) { %>
+                    <%= recipe.category[i]  %> 
+                <% } %></p>
+                <p style="font-size:16px"><b>Author: </b> <%= username%></p>
             </div><!-- / project-info-box -->
         </div><!-- / column -->
     </div>
     <div class="ingredient-box">
-        <p><b>Ingredients:</b> Potatoes, beef, totatoes, red onion, cabbage</p>
+        <p style="font-size:16px"><b>Ingredients:</b> Potatoes, beef, totatoes, red onion, cabbage</p>
     </div>
     <div class="instruction-box">
-        <p><b>Instructions:</b></p>
+        <p style="font-size:16px"><b>Instructions: </b><%= recipe.cookingSteps%></p>
     </div>
 </div>
 <%- include('../_partial/_footer') -%>
