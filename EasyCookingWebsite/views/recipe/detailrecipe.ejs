@@ -15,7 +15,7 @@
 
             <div class="project-info-box mt-0 mb-0">
                 <p class="mb-0" style="font-size:16px">
-                    <img src="../views/images/like.png" name="likeRecipe" id="likeRecipe" style="width:30px;height:30px;"></img>
+                    <img src="/views/images/like.png" name="likeRecipe" id="likeRecipe" style="width:30px;height:30px;"></img>
                 </p>
             </div><!-- / project-info-box -->
         </div><!-- / column -->
@@ -33,7 +33,7 @@
                 </ol>
                 <!-- 轮播（Carousel）项目 -->
                 <div class="carousel-inner">
-                    <%if (recipe.image.length == 1) {%>
+                    <%if (recipe.image[0].length == 1) {%>
                     <div class="item active">
                         <img src="<%= '/' + recipe.image %>" height="250px" />
                     </div>

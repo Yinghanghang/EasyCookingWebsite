@@ -109,7 +109,6 @@ router.get("/home/:recipeId", function (req, res) {
             name = user.username;
             res.render("home/detail", { recipe: recipe, username: name });
         });
-        //res.render("home/detail", { recipe: recipe });
     });
 });
 

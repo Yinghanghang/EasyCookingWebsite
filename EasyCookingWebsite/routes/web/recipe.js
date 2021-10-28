@@ -99,7 +99,7 @@ router.post("/update", upload.array('image', 12), async function (req, res) {
     try {
         let saveRecipe = await recipe.save();
         console.log("saveRecipe", saveRecipe);
-        res.redirect("/recipes/" + req.body.recipeId);
+        res.redirect("/recipes/detail/" + req.body.recipeId);
 
     } catch (err) {
         console.log("error happened");
