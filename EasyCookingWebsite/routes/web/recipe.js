@@ -78,7 +78,7 @@ router.get("/update/:recipeId", function (req, res) {
 
 router.post("/update", upload.array('image', 12), async function (req, res) {
     const recipe = await Recipe.findById(req.body.recipeId);
-    const files = req.files;
+    const newFiles = req.files;
     var currentFiles = recipe.image;
 
     recipe.title = req.body.title;
@@ -89,9 +89,9 @@ router.post("/update", upload.array('image', 12), async function (req, res) {
     recipe.cookingSteps = req.body.cookingSteps;
     recipe.difficultLevel = req.body.difficultLevel;
     recipe.userID = req.user._id;
-    if (files != null) {
+    if (newFiles.length >0) {
         //handle upload file (use multer)
-        recipe.image = files; // upload path where file is located
+        recipe.image = newFiles; // upload path where file is located
     } else {
         recipe.image = currentFiles;
     }
