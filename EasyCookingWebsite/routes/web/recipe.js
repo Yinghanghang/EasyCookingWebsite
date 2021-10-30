@@ -44,19 +44,39 @@ router.get("/add", function (req, res) {
 // handle when click Add new recipe 
 router.post("/add", upload.array('images', 12), function (req, res, next) { // same name as addecipe.name = image
     const files = req.files;
-    if (!files) {
-        const err = new Error("Please choose files");
-        err.httpStatusCode = 400;
-        return next(err);
+    const title = req.body.title;
+    const category = req.body.category;
+    const prepareTime = req.body.prepareTime;
+    const cookingTime = req.body.cookingTime;
+    const ingredient = req.body.ingredient;
+    const cookingSteps = req.body.cookingSteps;
+    const difficultLevel = req.body.difficultLevel;
+
+  if (files.length == 0) {
+        // const err = new Error("Please choose at least one image");
+        // err.httpStatusCode = 400;
+        // return next(err);
+        req.flash("error", "Please choose at least one image and no more than 12 images");
+        return res.redirect("/recipes/add");
     }
+    if(isNaN(prepareTime) || isNaN(cookingTime)) {
+        req.flash("error", "Please enter an integer for cookingTime and prepareTime");
+        return res.redirect("/recipes/add");
+    }
+
+    if(title.length == 0 || category.length == 0 || prepareTime.length == 0 || cookingTime.length == 0 || ingredient.length == 0 || cookingSteps.length == 0 || difficultLevel.length == 0){
+        req.flash("error", "Please fill all fields");
+        return res.redirect("/recipes/add");
+    }
+
     var newRecipe = new Recipe({
-        title: req.body.title,
-        category: req.body.category,
-        prepareTime: req.body.prepareTime,
-        cookingTime: req.body.cookingTime,
-        ingredient: req.body.ingredient,
-        cookingSteps: req.body.cookingSteps,
-        difficultLevel: req.body.difficultLevel,
+        title: title, 
+        category: category, 
+        prepareTime:  prepareTime,
+        cookingTime: cookingTime,
+        ingredient:  ingredient,
+        cookingSteps: cookingSteps,
+        difficultLevel:  difficultLevel,
         image: files,
         userID: req.user._id,
     });
