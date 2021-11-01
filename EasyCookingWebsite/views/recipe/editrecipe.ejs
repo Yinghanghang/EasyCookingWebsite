@@ -3,6 +3,17 @@
 
     <div class="col-md-10 col-sm-6 col-xs-12">
         <form action="/recipes/update" method="POST" enctype="multipart/form-data">
+            <% error.forEach(function (err) { %>
+                <div class="alert alert-danger" role="alert" style="text-align:center;">
+                    <%= err.msg %>
+                </div>
+                <% }); %>
+                
+                <% if(info && info.length > 0) { %>
+                    <div class="alert alert-info" role="alert">
+                        <%= info %>
+                    </div>
+                <% } %>
             <div class="float-childl">
 
                 <div class="input-group">
@@ -62,12 +73,12 @@
             <div class="float-childr">
 
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">PrepareTime</span>
+                    <span class="input-group-addon" id="basic-addon1">PrepareTime (minutes)</span>
                     <input type="text" name="prepareTime" class="form-control" placeholder="PrepareTime" aria-describedby="basic-addon1" value="<%= recipe.prepareTime %>">
                 </div>
                 <br />
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">CookingTime</span>
+                    <span class="input-group-addon" id="basic-addon1">CookingTime (minutes)</span>
                     <input type="text" name="cookingTime" class="form-control" aria-describedby="basic-addon1" value="<%= recipe.cookingTime %>">
                 </div>
                 <br />
@@ -77,7 +88,7 @@
                 </div>
                 <br />
                 <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1"></span>
+                    <span class="input-group-addon" id="basic-addon1">Steps</span>
                     <textarea name="cookingSteps" id="cookingSteps" rows="4" cols="50" class="form-control" aria-describedby="basic-addon1"><%=recipe.cookingSteps%></textarea>
                 </div>
                 <script>
@@ -89,15 +100,29 @@
                     <select name="difficultLevel" id="difficultLevel" class="form-control" aria-describedby="basic-addon1">
                         <% if(recipe.difficultLevel == 'supereasy'){ %>
                             <option value="supereasy" selected>super easy</option>
-                        <% }else if(recipe.difficultLevel == 'easy'){ %>
+                        <% }else { %>
+                            <option value="supereasy">super easy</option>
+                        <% } %>
+                        <% if(recipe.difficultLevel == 'supereasy'){ %>
                             <option value="easy" selected>easy</option>
-                        <% } else if(recipe.difficultLevel == "normal"){%>
+                        <% }else { %>
+                            <option value="easy">easy</option>
+                        <% } %>
+                        <% if(recipe.difficultLevel == 'normal'){ %>
                             <option value="normal" selected>normal</option>
-                        <%}else if(recipe.difficultLevel == "hard"){%>
+                        <% }else { %>
+                            <option value="normal">normal</option>
+                        <% } %>
+                        <% if(recipe.difficultLevel == 'hard'){ %>
                             <option value="hard" selected>hard</option>
-                        <%}else{%>
-                            <option value="superhard" selected>super hard</option>
-                        <%}%>
+                        <% }else { %>
+                            <option value="hard">hard</option>
+                        <% } %>
+                        <% if(recipe.difficultLevel == 'superhard'){ %>
+                            <option value="superhard" selected>superhard</option>
+                        <% }else { %>
+                            <option value="superhard">superhard</option>
+                        <% } %>
                     </select>
                 </div>
                 <br />

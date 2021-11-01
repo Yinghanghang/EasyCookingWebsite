@@ -3,11 +3,11 @@
     <div class="float-container bg">
         <div class="col-md-10 col-sm-6 col-xs-12">
         <form action="/recipes/add" method="POST" enctype="multipart/form-data">
-            <% if(error && error.length > 0) { %>
-                <div class="alert alert-danger" role="alert">
-                    <%= error %>
-                </div>
-            <% } %>
+            <% error.forEach(function (err) { %>
+            <div class="alert alert-danger" role="alert" style="text-align:center;">
+                <%= err.msg %>
+            </div>
+            <% }); %>
             
             <% if(info && info.length > 0) { %>
                 <div class="alert alert-info" role="alert">
@@ -18,50 +18,79 @@
             <div class="float-childl">
  
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"></span>
-                <input type="text" class="form-control" placeholder="Title" name="title" aria-describedby="basic-addon1">
+                <span class="input-group-addon" id="basic-addon1">Title</span>
+                <input type="text" class="form-control" value= "<%= form.title %>"  name="title" aria-describedby="basic-addon1" >
             </div>
             <br />
             
             <div class="input-group">
-                <span class="input" style="background-color:white; color: grey; font-weight: bold; font-size: large" id="basic-addon1">Category</span><br/><br/>
-                <input type="checkbox" name="category" value="Breakfast" checked>
-                <label  for="breakfast">Breakfast</label><br/>
-                <input type="checkbox" name="category" value="Lunch">
-                <label  for="breakfast">Lunch</label><br/>
-                <input type="checkbox" name="category" value="Dinner">
-                <label  for="breakfast">Dinner</label><br/>
-                <input type="checkbox" name="category" value="Dessert">
-                <label  for="breakfast">Dessert</label><br/>
-                <input type="checkbox" name="category" value="Drinks">
-                <label  for="breakfast">Drinks</label><br/>
-                <input type="checkbox" name="category" value="Healthy">
-                <label  for="breakfast">Healthy</label><br/>
-                <input type="checkbox" name="category" value="Quick_Easy">
+                <span class="input" style="background-color:white; color: grey; font-weight: bold; font-size: large" id="basic-addon1" >Category</span><br/><br/>
+                    <% if(form.category.includes('Breakfast')){ %>
+                        <input type="checkbox" name="category" value="Breakfast" checked>
+                    <% }else{ %>
+                        <input type="checkbox" name="category" value="Breakfast">
+                    <% } %>
+                        <label for="breakfast">Breakfast</label><br />
+                    <% if(form.category.includes('Lunch')){ %>
+                        <input type="checkbox" name="category" value="Lunch" checked>
+                    <% }else{ %>
+                        <input type="checkbox" name="category" value="Lunch">   
+                    <% } %>
+                        <label for="lunch">Lunch</label><br />
+                    <% if(form.category.includes('Dinner')){ %>
+                        <input type="checkbox" name="category" value="Dinner" checked>
+                    <% }else{ %>
+                        <input type="checkbox" name="category" value="Dinner">                               
+                    <% } %>
+                        <label for="dinner">Dinner</label><br />
+                    <% if(form.category.includes('Dessert')){ %>
+                        <input type="checkbox" name="category" value="Dessert" checked>
+                    <% }else{ %>
+                        <input type="checkbox" name="category" value="Dessert">                            
+                    <% } %>
+                    <label for="dessert">Dessert</label><br />
+                    <% if(form.category.includes('Drinks')){ %>
+                        <input type="checkbox" name="category" value="Drinks" checked>
+                    <% }else{ %>
+                        <input type="checkbox" name="category" value="Drinks">      
+                    <% } %>
+                    <label for="drinks">Drinks</label><br />
+                    <% if(form.category.includes('Healthy')){ %>
+                        <input type="checkbox" name="category" value="Healthy" checked>
+                    <% }else{ %>
+                        <input type="checkbox" name="category" value="Healthy">        
+                    <% } %>
+                    <label for="healthy">Healthy</label><br />
+                    <% if(form.category.includes('Quick_Easy')){ %>
+                        <input type="checkbox" name="category" value="Quick_Easy" checked>
+                    <% }else{ %>
+                        <input type="checkbox" name="category" value="Quick_Easy">                     
+                    <% } %>
                 <label  for="breakfast">Quick&Easy</label><br/>
+               
             </div>
         </div>
             <br />
           <div class="float-childr">
 
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"></span>
-                <input type="text" name="prepareTime" class="form-control" placeholder="PrepareTime (minutes)" aria-describedby="basic-addon1">
+                <span class="input-group-addon" id="basic-addon1">PrepareTime (minutes)</span>
+                <input type="text" name="prepareTime" class="form-control" aria-describedby="basic-addon1" value = "<%= form.prepareTime %>">
             </div>
             <br />
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"></span>
-                <input type="text" name="cookingTime" class="form-control" placeholder="CookingTime (minutes)" aria-describedby="basic-addon1">
+                <span class="input-group-addon" id="basic-addon1">CookingTime (minutes)</span>
+                <input type="text" name="cookingTime" class="form-control" aria-describedby="basic-addon1" value = "<%= form.cookingTime %>">
             </div>
             <br />
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"></span>
-                <input type="text" name="ingredient" class="form-control" placeholder="Ingredient" aria-describedby="basic-addon1">
+                <span class="input-group-addon" id="basic-addon1">Ingredient</span>
+                <input type="text" name="ingredient" class="form-control" aria-describedby="basic-addon1"  value = "<%= form.ingredient %>">
             </div>
             <br />
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"></span>
-                <textarea name="cookingSteps" id="cookingSteps" rows="4" cols="50" class="form-control" placeholder="CookingSteps" aria-describedby="basic-addon1"></textarea>
+                <span class="input-group-addon" id="basic-addon1">Steps</span>
+                <textarea name="cookingSteps" id="cookingSteps" rows="4" cols="50" class="form-control" aria-describedby="basic-addon1" > <%= form.cookingSteps %></textarea>
             </div>
             <script>
                 CKEDITOR.replace( 'cookingSteps' );
@@ -69,17 +98,37 @@
             <br />
              <div class="input-group">
                  <span class="input-group-addon" id="basic-addon1">Difficult Level</span>
-                 <select name="difficultLevel" id="difficultLevel" class="form-control" aria-describedby="basic-addon1">
-                      <option value="supereasy" selected>super easy</option>
-                      <option value="easy">easy</option>
-                      <option value="normal">normal</option>
-                      <option value="hard">hard</option>
-                      <option value="superhard">super hard</option>
+                 <select name="difficultLevel" id="difficultLevel" class="form-control" value = "<%= form.difficultLevel %>" aria-describedby="basic-addon1">
+                    <% if(form.difficultLevel == 'supereasy'){ %>
+                        <option value="supereasy" selected>super easy</option>
+                    <% }else { %>
+                        <option value="supereasy">super easy</option>
+                    <% } %>
+                    <% if(form.difficultLevel == 'supereasy'){ %>
+                        <option value="easy" selected>easy</option>
+                    <% }else { %>
+                        <option value="easy">easy</option>
+                    <% } %>
+                    <% if(form.difficultLevel == 'normal'){ %>
+                        <option value="normal" selected>normal</option>
+                    <% }else { %>
+                        <option value="normal">normal</option>
+                    <% } %>
+                    <% if(form.difficultLevel == 'hard'){ %>
+                        <option value="hard" selected>hard</option>
+                    <% }else { %>
+                        <option value="hard">hard</option>
+                    <% } %>
+                    <% if(form.difficultLevel == 'superhard'){ %>
+                        <option value="superhard" selected>superhard</option>
+                    <% }else { %>
+                        <option value="superhard">superhard</option>
+                    <% } %>
                   </select>
               </div>
             <br />
             <div class="input-group">
-                <input type="file" name="images" accept="image/*" multiple>
+                <input type="file" name="images" value = "<%= form.files %>" accept="image/*" multiple>
             </div>
             <br />
             <input type="submit" class="btn btnc navbar-btn" href="#" value="Create" />

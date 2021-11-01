@@ -8,6 +8,7 @@ var passport = require("passport");
 var session = require("express-session");
 var flash = require("connect-flash");
 var params = require("./params/params");
+var expressValidator = require('express-validator');
 
 var setUpPassport = require("./setuppassport");
 
@@ -30,6 +31,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(expressValidator());
+
 
 app.use("/", require("./routes/web"));
 app.use("/api", require("./routes/api"));
