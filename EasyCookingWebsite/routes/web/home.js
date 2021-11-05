@@ -25,6 +25,15 @@ router.get("/result", function (req, res) {
   });
 });
 
+router.post("/result", function (req, res) {
+    var content = req.body.searchContent;
+    var reg = new RegExp(content, 'i');
+    Recipe.find({title : {$regex : reg}}).exec(function (err, recipe) {
+        if (err) { console.log(err); }
+        res.render("home/result", { recipes:recipe, category : content.category });
+  });
+});
+
 router.get("/result/:category", function (req, res) {
     Recipe.find({category : req.params.category}).exec(function (err, recipe) {
         if (err) { console.log(err); }

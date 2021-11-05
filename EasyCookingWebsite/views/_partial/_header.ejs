@@ -29,7 +29,9 @@
                 <a class="navbar-brand" href="/" style="color: #1b4d3e;">EasyCooking</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-            <li><input class="positionedSearch" type="search" placeholder="Search" aria-label="Search"></li>
+            <form class="searchBox" method="POST" action="/result">
+            <li><input class="positionedSearch" type="search" placeholder="Search" aria-label="Search" name="searchContent"></li>
+            </form>
         <% if(currentUser != null){ %>           
 	    <li><a href="/recipes">My Recipes</a></li>
             <li><a href="/profile">Welcome, <%= currentUser.username %>! </a></li>
