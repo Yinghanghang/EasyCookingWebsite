@@ -11,7 +11,7 @@ var recipeSchema = mongoose.Schema({
 /*    username: { type: String, require: false },  //show username of display  */
     userID: { type: mongoose.Schema.Types.ObjectId, require: false, unique: false },
     difficultLevel: { type: String, require: false },
-    like: { type: Number, require: false },
+    like: { type: Number, require: false, default: 0 },
     createAt: { type: Date, default: Date.now }
 });
 
