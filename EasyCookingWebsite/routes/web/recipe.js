@@ -4,7 +4,6 @@ var express = require("express");
 var multer = require("multer");
 var crypto = require("crypto");
 var path = require("path");
-var expressValidator = require('express-validator');
 // end use for file upload
 var ensureAuthenticated = require("../../auth/auth").ensureAuthenticated;
 
@@ -199,6 +198,42 @@ router.get("/detail/:recipeId", function (req, res) {
         if (err) { console.log(err); }
         res.render("recipe/detailrecipe", { recipe: recipe });
     });
+});
+
+router.get("/like/:recipeId", function (req, res) {
+    Recipe.findById(req.params.recipeId).exec(async function (err, recipe) {
+        if (err) { console.log(err); }
+        var currentUser = req.user;
+        var currentRecipe = recipe;
+        // update user
+        currentUser.username = currentUser.username;
+        currentUser.email = currentUser.email;
+        currentUser.password = currentUser.password;
+        currentUser.firstname = currentUser.firstname;
+        currentUser.lastname = currentUser.lastname;
+        currentUser.createdAt = currentUser.createdAt;
+        currentUser.like.push(currentRecipe._id);
+
+        // update recipe
+        recipe.title = currentRecipe.title;
+        recipe.category = currentRecipe.category;
+        recipe.prepareTime = currentRecipe.prepareTime;
+        recipe.cookingTime = currentRecipe.cookingTime;
+        recipe.ingredient = currentRecipe.ingredient;
+        recipe.cookingSteps = currentRecipe.cookingSteps;
+        recipe.difficultLevel = currentRecipe.difficultLevel;
+        recipe.userID = currentRecipe.userID;
+        recipe.image = currentRecipe.image;
+        recipe.like = Number(currentRecipe.like + 1);
+
+        // save user and recipe in database
+        let saveRecipe = await recipe.save();
+        console.log("saveRecipe", saveRecipe);
+        let saveUser = await currentUser.save();
+        console.log("saveUser", saveUser);
+        res.render("recipe/likerecipe", { recipe: recipe });
+    });
+
 });
 
 module.exports = router;
