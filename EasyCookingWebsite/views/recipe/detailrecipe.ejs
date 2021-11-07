@@ -66,13 +66,16 @@
                 </p>
 
             </div><!-- / project-info-box -->
-        </div><!-- / column -->
+        </div><!-- / column --> 
     </div>
     <div class="ingredient-box">
-        <p style="font-size:16px"><b>Ingredients:</b> <%= recipe.ingredient%></p>
+        <p style="font-size:16px"><b>Ingredients: </b> <%= recipe.ingredient%></p>
     </div>
     <div class="instruction-box">
-        <p style="font-size:16px"><b>Instructions:</b><%= recipe.cookingSteps%></p>
+        <p style="font-size:16px;"><b>Instructions: </b> </p>
+        <p1 style="font-size:16px;"><%- recipe.cookingSteps %></p1>
     </div>
 </div>
 <%- include('../_partial/_footer') -%>
+
+

@@ -402,6 +402,11 @@ a.btn, a.btn-social {
 .instruction-box p {
     font-size: 110%;
 }
+
+.instruction-box p1 {
+  font-size: 100%;
+}
+
 .carousel-inner .item {
   width:655px;
   height:403px;
@@ -421,6 +426,27 @@ p {
     letter-spacing: 0.03rem;
     margin-bottom: 10px;
 }
+
+p1 {
+  font-family: "Barlow", sans-serif !important;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #686c6d;
+  letter-spacing: 0.03rem;
+  margin-bottom: 10px;
+}
+
 b, strong {
     font-weight: 700 !important;
+}
+
+
+ol li {
+  list-style-type: decimal;
+  margin-left: 15px;
+}
+
+ul li {
+  list-style-type: disc;
+  margin-left: 15px;
 }
