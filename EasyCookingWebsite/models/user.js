@@ -9,6 +9,7 @@ var userSchema = mongoose.Schema({
     password: { type: String, required: false },
     firstname: { type: String, required: false },
     lastname: { type: String, required: false },
+    like: {type: Array, required: false},
     createdAt: { type: Date, default: Date.now }
 });
 
