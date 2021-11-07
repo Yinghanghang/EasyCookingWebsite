@@ -21,7 +21,7 @@
         </div><!-- / column -->
         <div class="col-md-7">
             <div id="myCarousel" class="carousel slide">
-                <!-- 轮播（Carousel）指标 -->
+                <!-- ???Carousel??? -->
                 <ol class="carousel-indicators">
                     <% for(var i = 0; i < recipe.image.length; i++){%>
                     <%if(i == 0){%>
@@ -31,7 +31,7 @@
                     <%}%>
                     <%}%>
                 </ol>
-                <!-- 轮播（Carousel）项目 -->
+                <!-- ???Carousel??? -->
                 <div class="carousel-inner">
                     <%if (recipe.image[0].length == 1) {%>
                     <div class="item active">
@@ -52,7 +52,7 @@
                     <%}%>
 
                 </div>
-                <!-- 轮播（Carousel）导航 -->
+                <!-- ???Carousel??? -->
                 <a class="carousel-control left" href="#myCarousel"
                    data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
                 <a class="carousel-control right" href="#myCarousel"
@@ -72,7 +72,7 @@
         <p style="font-size:16px"><b>Ingredients:</b> <%= recipe.ingredient%></p>
     </div>
     <div class="instruction-box">
-        <p style="font-size:16px"><b>Instructions:</b><%= recipe.cookingSteps%></p>
+        <p style="font-size:16px"><b>Instructions:</b> <%= recipe.cookingSteps%></p>
     </div>
 </div>
 <%- include('../_partial/_footer') -%>
