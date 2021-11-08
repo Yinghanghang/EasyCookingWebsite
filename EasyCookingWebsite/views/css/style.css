@@ -55,6 +55,7 @@ body {
 }
 
 .tm-main-nav-ul {
+	margin-left: -10px;
 	text-align: center;
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;

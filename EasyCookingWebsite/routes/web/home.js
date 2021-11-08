@@ -102,7 +102,7 @@ router.post("/signup", function (req, res, next) {
 
 
 router.get("/profile", function (req, res) {
-    User.findOne({ userID: req.user._id }, function (err, user) {
+    User.findById(req.user._id, function (err, user) {
         if (err) { console.log(err); }
         res.render("user/profile", { user: user });
     });
