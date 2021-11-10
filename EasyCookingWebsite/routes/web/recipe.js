@@ -205,35 +205,47 @@ router.get("/like/:recipeId", function (req, res) {
         if (err) { console.log(err); }
         var currentUser = req.user;
         var currentRecipe = recipe;
-        // update user
-        currentUser.username = currentUser.username;
-        currentUser.email = currentUser.email;
-        currentUser.password = currentUser.password;
-        currentUser.firstname = currentUser.firstname;
-        currentUser.lastname = currentUser.lastname;
-        currentUser.createdAt = currentUser.createdAt;
-        currentUser.like.push(currentRecipe._id);
+        //check if liked recipe is exist in user.like
+        var currentUserLike = currentUser.like;
+        var isAlreadyLike = false;
+        for (var i = 0; i < currentUserLike.length; i++) {
+            if (currentUserLike[i] == req.params.recipeId) {
+                isAlreadyLike = true;
+                break;
+            }
+        }
+        if (!isAlreadyLike) {
+            // update user
+            currentUser.username = currentUser.username;
+            currentUser.email = currentUser.email;
+            currentUser.password = currentUser.password;
+            currentUser.firstname = currentUser.firstname;
+            currentUser.lastname = currentUser.lastname;
+            currentUser.createdAt = currentUser.createdAt;
+            currentUser.like.push(currentRecipe._id);
 
-        // update recipe
-        recipe.title = currentRecipe.title;
-        recipe.category = currentRecipe.category;
-        recipe.prepareTime = currentRecipe.prepareTime;
-        recipe.cookingTime = currentRecipe.cookingTime;
-        recipe.ingredient = currentRecipe.ingredient;
-        recipe.cookingSteps = currentRecipe.cookingSteps;
-        recipe.difficultLevel = currentRecipe.difficultLevel;
-        recipe.userID = currentRecipe.userID;
-        recipe.image = currentRecipe.image;
-        recipe.like = Number(currentRecipe.like + 1);
+            // update recipe
+            recipe.title = currentRecipe.title;
+            recipe.category = currentRecipe.category;
+            recipe.prepareTime = currentRecipe.prepareTime;
+            recipe.cookingTime = currentRecipe.cookingTime;
+            recipe.ingredient = currentRecipe.ingredient;
+            recipe.cookingSteps = currentRecipe.cookingSteps;
+            recipe.difficultLevel = currentRecipe.difficultLevel;
+            recipe.userID = currentRecipe.userID;
+            recipe.image = currentRecipe.image;
+            recipe.like = Number(currentRecipe.like + 1);
 
-        // save user and recipe in database
-        let saveRecipe = await recipe.save();
-        console.log("saveRecipe", saveRecipe);
-        let saveUser = await currentUser.save();
-        console.log("saveUser", saveUser);
-        res.render("recipe/likerecipe", { recipe: recipe });
+            // save user and recipe in database
+            let saveRecipe = await recipe.save();
+            console.log("saveRecipe", saveRecipe);
+            let saveUser = await currentUser.save();
+            console.log("saveUser", saveUser);
+        } else {
+            console.log("Already like this recipe!!!");
+        }
+        res.redirect("../../recipes/detail/" + req.params.recipeId);
     });
-
 });
 
 module.exports = router;
