@@ -43,7 +43,7 @@
                 <div class="data">
                     <h4>Favorite Recipes: </h4>
                     <% user.like.forEach(function(recipe) { %>
-                    <p><a href="recipes/detail/<%=recipe %>">Link</a> </p>
+                    <p><a href="recipes/detail/<%=recipe %>"><%= recipe.title %></a> </p>
                     <% }) %>
                 </div>
             </div>      

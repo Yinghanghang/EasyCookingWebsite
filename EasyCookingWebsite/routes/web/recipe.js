@@ -209,7 +209,7 @@ router.get("/like/:recipeId", function (req, res) {
         var currentUserLike = currentUser.like;
         var isAlreadyLike = false;
         for (var i = 0; i < currentUserLike.length; i++) {
-            if (currentUserLike[i] == req.params.recipeId) {
+            if (currentUserLike[i] == currentRecipe ) { //req.params.recipeId)
                 isAlreadyLike = true;
                 break;
             }
@@ -222,7 +222,7 @@ router.get("/like/:recipeId", function (req, res) {
             currentUser.firstname = currentUser.firstname;
             currentUser.lastname = currentUser.lastname;
             currentUser.createdAt = currentUser.createdAt;
-            currentUser.like.push(currentRecipe._id);
+            currentUser.like.push(currentRecipe); //currentRecipe._id
 
             // update recipe
             recipe.title = currentRecipe.title;
