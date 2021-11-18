@@ -1,8 +1,11 @@
 <%- include('../_partial/_header') -%>
 <div class="container">
+ 
     <div class="row">
+
         <div class="col-md-5">
             <div class="project-info-box mt-0">
+
                 <p class="mb-0" style="color: #1b4d3e;font-size:20px;font-weight: bold;"><%= recipe.title %></p>
             </div><!-- / project-info-box -->
 
@@ -15,9 +18,23 @@
 
             <div class="project-info-box mt-0 mb-0">
                 <p class="mb-0" style="font-size:16px">
-                    <img src="../views/images/like.png" name="likeRecipe" id="likeRecipe" style="width:30px;height:30px;"></img>
+                    <a href="/like/<%= recipe._id %>"><img src="../views/images/like.png" name="likeRecipe" id="likeRecipe" style="width:30px;height:30px;"></img></a>
+
+                    <% console.log(error) %>
+                    <% if(error && error.length > 0) { %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                    <% } %>
+                    
+                    <% if(info && info.length > 0) { %>
+                        <div class="alert alert-info" role="alert">
+                            <%= info %>
+                        </div>
+                    <% } %>
                 </p>
-            </div><!-- / project-info-box -->
+            </div>
+            <!-- / project-info-box -->
         </div><!-- / column -->
         <div class="col-md-7">
             <div id="myCarousel" class="carousel slide">
@@ -76,4 +93,5 @@
         <p1 style="font-size:16px;"><%- recipe.cookingSteps %></p1>
     </div>
 </div>
+
 <%- include('../_partial/_footer') -%>

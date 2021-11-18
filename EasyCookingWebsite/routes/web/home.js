@@ -108,6 +108,21 @@ router.get("/profile", function (req, res) {
     });
 });
 
+router.get("/like/:recipeId", function (req, res) {
+    //req.flash("error", "Please login to like recipes.");  
+    Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
+        if (err) { console.log(err); }
+        User.findById(recipe.userID).exec(function (err, user) {
+            if (err) { console.log(err); }   
+            name = user.username;
+            //console.log( "123" + req.flash('error'));
+            res.render("home/detail", { recipe: recipe, username: name ,  info: "Please login to like recipes." });
+        });
+    });
+
+});
+
+
 // Must be the last one in order for ":" to match
 router.get("/home/:recipeId", function (req, res) {
     Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
