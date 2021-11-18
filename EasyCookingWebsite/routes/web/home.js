@@ -12,7 +12,7 @@ var Recipe = require("../../models/recipe");
 var router = express.Router();
 
 router.get("/", function (req, res) {
-    Recipe.find().exec(function (err, recipes) {
+    Recipe.find().sort({ like: 1}). exec(function (err, recipes) {
         if (err) { console.log(err); }
         res.render("home/index", { recipes: recipes });
   });
