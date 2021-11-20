@@ -134,10 +134,8 @@
                 <input type="hidden" id="recipeId" name="recipeId" value="<%= recipe._id%>" />
 
                 <div class="form-group">
-                    <p>
-                    <button href="recipes/cancel/<%=recipe._id%>" class="btn btn-default" style = "background-color:  #1b4d3e; color: white;" role="button">Cancel</button> 
-                    <button type="submit" class="btn btn-default" style = "background-color: #1b4d3e; color: white;  float: right" href="#" role="button">Update</button>                     
-                    </p>
+                        <button type = "submit" name = "vote" value = "cancel" class="btn btn-default" style = "background-color:  #1b4d3e; color: white;" href = "#" role="button">Cancel</button> 
+                        <button type ="submit" name = "vote" value = "update" class="btn btn-default" style = "background-color: #1b4d3e; color: white;  float: right" href="#" role="button">Update</button>                
                 </div>
 
             </div>

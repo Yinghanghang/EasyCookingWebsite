@@ -138,62 +138,71 @@ router.get("/update/:recipeId", function (req, res) {
 
 
 router.post("/update", upload.array('image', 12), async function (req, res) {
-    const recipe = await Recipe.findById(req.body.recipeId);
-    var fileValidationError;
-    const newFiles = req.files;
-    var currentFiles = recipe.image;
+    var input = req.body.vote;
 
-    recipe.title = req.body.title;
-    recipe.category = req.body.category == null ? [] : req.body.category;
-    recipe.prepareTime = req.body.prepareTime;
-    recipe.cookingTime = req.body.cookingTime;
-    recipe.ingredient = req.body.ingredient;
-    recipe.cookingSteps = req.body.cookingSteps;
-    recipe.difficultLevel = req.body.difficultLevel;
-    recipe.userID = req.user._id;
-
-    if (newFiles.length > 12) {
-        fileValidationError = {
-            location: 'files',
-            params: 'files',
-            msg: 'Please choose at least one image and no more than 12 images',
-            value: undefined
-        }
-    }
-
-    if (newFiles.length > 0 && newFiles.length < 13) {
-        //handle upload file (use multer)
-        recipe.image = newFiles; // upload path where file is located
-    } else {
-        recipe.image = currentFiles;
-    }
-
+    if(input == "cancel") {
+        res.redirect("/recipes");
+    } else  if(input == "update"){
+        const recipe = await Recipe.findById(req.body.recipeId);
+        var fileValidationError;
+        const newFiles = req.files;
+        var currentFiles = recipe.image;
     
-    req.checkBody('title', 'Please enter the title').notEmpty();
-    req.checkBody('category', 'Please check the category').notEmpty();
-    req.checkBody('prepareTime', 'Please enter prepare time in minutes').notEmpty().isInt();
-    req.checkBody('cookingTime', 'Please enter cooking time in minutes').notEmpty().isInt();
-    req.checkBody('ingredient', 'Please enter ingredients').notEmpty();
-    req.checkBody('cookingSteps', 'Please enter cooking steps').notEmpty();
-    req.checkBody('difficultLevel', 'Please choose difficult level').notEmpty();
-
-
- var errors = req.validationErrors();
- if(errors || fileValidationError){
-     all_errors = []
-     if (errors) {
-         all_errors = all_errors.concat(errors);
+        recipe.title = req.body.title;
+        recipe.category = req.body.category == null ? [] : req.body.category;
+        recipe.prepareTime = req.body.prepareTime;
+        recipe.cookingTime = req.body.cookingTime;
+        recipe.ingredient = req.body.ingredient;
+        recipe.cookingSteps = req.body.cookingSteps;
+        recipe.difficultLevel = req.body.difficultLevel;
+        recipe.userID = req.user._id;
+    
+        if (newFiles.length > 12) {
+            fileValidationError = {
+                location: 'files',
+                params: 'files',
+                msg: 'Please choose at least one image and no more than 12 images',
+                value: undefined
+            }
+        }
+    
+        if (newFiles.length > 0 && newFiles.length < 13) {
+            //handle upload file (use multer)
+            recipe.image = newFiles; // upload path where file is located
+        } else {
+            recipe.image = currentFiles;
+        }
+    
+        
+        req.checkBody('title', 'Please enter the title').notEmpty();
+        req.checkBody('category', 'Please check the category').notEmpty();
+        req.checkBody('prepareTime', 'Please enter prepare time in minutes').notEmpty().isInt();
+        req.checkBody('cookingTime', 'Please enter cooking time in minutes').notEmpty().isInt();
+        req.checkBody('ingredient', 'Please enter ingredients').notEmpty();
+        req.checkBody('cookingSteps', 'Please enter cooking steps').notEmpty();
+        req.checkBody('difficultLevel', 'Please choose difficult level').notEmpty();
+    
+    
+     var errors = req.validationErrors();
+     if(errors || fileValidationError){
+         all_errors = []
+         if (errors) {
+             all_errors = all_errors.concat(errors);
+         }
+         if (fileValidationError) {
+             all_errors = all_errors.concat([fileValidationError]);
+         }
+         res.render("recipe/editrecipe", {error: all_errors, recipe: recipe});
+     } else{
+            let saveRecipe = await recipe.save();
+           // console.log("saveRecipe", saveRecipe);
+            res.redirect("/recipes/detail/" + req.body.recipeId);
      }
-     if (fileValidationError) {
-         all_errors = all_errors.concat([fileValidationError]);
-     }
-     res.render("recipe/editrecipe", {error: all_errors, recipe: recipe});
- } else{
-        let saveRecipe = await recipe.save();
-        console.log("saveRecipe", saveRecipe);
-        res.redirect("/recipes/detail/" + req.body.recipeId);
- }
+
+    }
+
 });
+
 
 router.get("/delete/:recipeId", function (req, res) {
     Recipe.findByIdAndDelete(req.params.recipeId).exec(function (err, recipe) {
