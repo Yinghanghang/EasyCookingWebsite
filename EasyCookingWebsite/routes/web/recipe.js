@@ -28,7 +28,7 @@ var upload = multer({ storage: storage });
 router.use(ensureAuthenticated);
 
 // add middleware function ensureAuthenticated between "/recipes" and "function => done
-router.get("/", function (req, res) {   // "/", go to the route of the page, then we can have <webiste>/recipes
+router.get("/", function (req, res) {   // "/", go to the route of the page, then we can have <website>/recipes
     // get all the post
     Recipe.find({ userID: req.user._id }).exec(function (err, recipes) {
         if (err) { console.log(err); }
@@ -38,6 +38,7 @@ router.get("/", function (req, res) {   // "/", go to the route of the page, the
 });
 
 // view recipe/addrecipe page & get all recipes related to user => done
+// handle when click Add new recipe 
 router.get("/add", function (req, res) {
     res.render("recipe/addrecipe", {form: {
         title: "",
@@ -50,7 +51,7 @@ router.get("/add", function (req, res) {
     }});
 });
 
-// handle when click Add new recipe 
+// handle when click "create"
 router.post("/add", upload.array('images', 12), function (req, res, next) { // same name as addecipe.name = image
     var fileValidationError;
     const files = req.files;
@@ -135,6 +136,7 @@ router.get("/update/:recipeId", function (req, res) {
     });
 });
 
+
 router.post("/update", upload.array('image', 12), async function (req, res) {
     const recipe = await Recipe.findById(req.body.recipeId);
     var fileValidationError;
@@ -192,6 +194,14 @@ router.post("/update", upload.array('image', 12), async function (req, res) {
         res.redirect("/recipes/detail/" + req.body.recipeId);
  }
 });
+
+router.get("/delete/:recipeId", function (req, res) {
+    Recipe.findByIdAndDelete(req.params.recipeId).exec(function (err, recipe) {
+        if (err) { console.log(err); }
+        res.redirect("/recipes");
+    });
+});
+
 
 router.get("/detail/:recipeId", function (req, res) {
     Recipe.findById(req.params.recipeId).exec(function (err, recipe) {

@@ -62,10 +62,10 @@
                         <% } %>
 
                         <% if(currentUser != null){ %>           
-                                 <a href="recipes/detail/<%= recipe._id %>"><h3 style="text-align:center;"> <%= recipe.title %></h3></a>
+                                 <a href="recipes/detail/<%= recipe._id %>"><h3 style="text-align:center; color: black"> <%= recipe.title %></h3></a>
                             <%}%>
                         <% if(currentUser == null){ %>
-                                <a href="home/<%= recipe._id %>"><h3 style="text-align:center;"> <%= recipe.title %></h3></a>
+                                <a href="home/<%= recipe._id %>"><h3 style="text-align:center; color:black"> <%= recipe.title %></h3></a>
                             <%}%>  
                      
                        </div>  

@@ -73,6 +73,12 @@ router.post("/signup", function (req, res, next) {
 
     User.findOne({ email: email }, function (err, user) {
         if (err) { return next(err); }
+
+        if (username == "" || password == "" || repassword == "" || firstname == "" || lastname == "") {
+            req.flash("error", "All fields are required!!!");
+            return res.redirect("/signup");
+        }
+
         if (user) {
             req.flash("error", "There is already an account with this email");
             return res.redirect("/signup");
