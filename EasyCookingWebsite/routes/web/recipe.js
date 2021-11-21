@@ -9,6 +9,8 @@ var ensureAuthenticated = require("../../auth/auth").ensureAuthenticated;
 
 var Recipe = require("../../models/recipe");
 
+var User = require("../../models/user");
+
 var router = express.Router();
 
 var storage = multer.diskStorage({
@@ -215,7 +217,13 @@ router.get("/delete/:recipeId", function (req, res) {
 router.get("/detail/:recipeId", function (req, res) {
     Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
         if (err) { console.log(err); }
-        res.render("recipe/detailrecipe", { recipe: recipe });
+        // Find username of recipe's author
+        User.findById(recipe.userID).exec(function (err, user) {
+            if (err) { console.log(err); }
+            name = user.username;
+            // pass all posts under variable posts so we can use in view recipes.ejs
+            res.render("recipe/detailrecipe", { recipe: recipe, username: name });
+        });
     });
 });
 
