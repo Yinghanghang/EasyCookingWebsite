@@ -26,13 +26,13 @@ var storage = multer.diskStorage({
 // upload call multer with storage parameter
 var upload = multer({ storage: storage });
 
-// add middleware ensureAuthenticated into router
-router.use(ensureAuthenticated);
+// add middleware ensureAuthenticated into entire router in this file
+router.use(ensureAuthenticated); // method ensureAuthenticated is defined in auth.js 
 
 // add middleware function ensureAuthenticated between "/recipes" and "function => done
-router.get("/", function (req, res) {   // "/", go to the route of the page, then we can have <website>/recipes
+router.get("/", function (req, res) {   // "/", go to the root of the router, which is http://localhost:1337/recipes
     // get all the post
-    Recipe.find({ userID: req.user._id }).exec(function (err, recipes) {
+    Recipe.find({ userID: req.user._id }).exec(function (err, recipes) { // call back function returns all the recipes under that user
         if (err) { console.log(err); }
         // pass all posts under variable posts so we can use in view recipes.ejs
         res.render("recipe/recipes", { recipes: recipes });
@@ -119,12 +119,12 @@ var form = {
         cookingSteps: cookingSteps,
         difficultLevel:  difficultLevel,
         image: files,
-        userID: req.user._id,
+        userID: req.user._id,  // id of the user signed in
     });
 
     newRecipe.save(function (err, recipe) {
         if (err) { console.log(err); }
-        // if not err, go to /recipes
+        // if not err, go to http://localhost:1337/recipes
         res.redirect("/recipes");
     });
 }
@@ -200,9 +200,7 @@ router.post("/update", upload.array('image', 12), async function (req, res) {
            // console.log("saveRecipe", saveRecipe);
             res.redirect("/recipes/detail/" + req.body.recipeId);
      }
-
     }
-
 });
 
 
@@ -213,8 +211,9 @@ router.get("/delete/:recipeId", function (req, res) {
     });
 });
 
-
+// : means a route parameter it could be anything and it's often an ID
 router.get("/detail/:recipeId", function (req, res) {
+    // req. param() searches the URL path, body, and query string of the request (in that order) for the specified parameter. recipeId should be the same as :recipeId
     Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
         if (err) { console.log(err); }
         // Find username of recipe's author

@@ -1,8 +1,7 @@
 var express = require("express");
 
-var router = express.Router();
+var router = express.Router(); // use express router which is stored in variable router
 
-// TODO: add in error and info
 // add currentUser object
 router.use(function (req, res, next) {
     // create currentUser, error, info to use in _header.ejs
@@ -10,12 +9,15 @@ router.use(function (req, res, next) {
     res.locals.error = req.flash("error");
     res.locals.info = req.flash("info");
 
-    next();
+    next(); // move to the next line
 });
 
 //use router
-router.use("/", require("./home"));
-router.use("/posts", require("./post")); // when go to posts, use post router file
-router.use("/recipes", require("./recipe"));
+router.use("/", require("./home")); // if on "/" path, use home.js routing file 
+router.use("/recipes", require("./recipe")); // when go to /recipes, use recipe router file
 
-module.exports = router;
+/* 
+In module.export, module is a variable that represents the current module and export is an object. 
+ Anything assigned to the module.exports will be expose as a module.
+*/
+module.exports = router;   

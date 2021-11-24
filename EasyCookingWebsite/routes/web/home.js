@@ -1,12 +1,12 @@
 var express = require("express");
 var passport = require("passport");
-// add 
+
 var ensureAuthenticated = require("../../auth/auth").ensureAuthenticated;
 var multer = require("multer");
 var crypto = require("crypto");
 var path = require("path");
 
-var User = require("../../models/user");
+var User = require("../../models/user"); // the User object would get whatever is being exported from the module in user.js. 
 var Recipe = require("../../models/recipe");
 
 var router = express.Router();
@@ -14,7 +14,7 @@ var router = express.Router();
 router.get("/", function (req, res) {
     Recipe.find().sort({ like: -1}). exec(function (err, recipes) {
         if (err) { console.log(err); }
-        res.render("home/index", { recipes: recipes });
+        res.render("home/index", { recipes: recipes }); // render the homepage, views fold is set to be the root directory
   });
 });
 
@@ -55,7 +55,7 @@ router.post("/login", passport.authenticate("login", {
 
 router.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/"); // url
 });
 
 
@@ -100,7 +100,7 @@ router.post("/signup", function (req, res, next) {
 
     });
 
-}, passport.authenticate("login", {
+}, passport.authenticate("login", {  // use login authenticate strategy defined in setuppassport.js
     successRedirect: "/",
     failureRedirect: "/signup",
     failureFlash: true

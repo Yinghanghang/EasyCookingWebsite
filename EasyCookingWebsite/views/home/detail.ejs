@@ -1,98 +1,113 @@
 <%- include('../_partial/_header') -%>
-<div class="container">
- 
-    <div class="row">
+    <div class="container">
 
-        <div class="col-md-5">
-            <div class="project-info-box mt-0">
+        <div class="row">
 
-                <p class="mb-0" style="color: #1b4d3e;font-size:20px;font-weight: bold;"><%= recipe.title %></p>
-            </div><!-- / project-info-box -->
+            <div class="col-md-5">
+                <div class="project-info-box mt-0">
 
-            <div class="project-info-box">
-                <p style="font-size:16px"><b>Prep Time:</b> <%= recipe.prepareTime %> mins</p>
-                <p style="font-size:16px"><b>Cook Time:</b> <%= recipe.cookingTime %> mins</p>
-                <p style="font-size:16px"><b>Difficulty:</b> <%= recipe.difficultLevel %></p>
-                <p style="font-size:16px"><b>Author: </b> <%= username %></p>
-            </div><!-- / project-info-box -->
+                    <p class="mb-0" style="color: #1b4d3e;font-size:20px;font-weight: bold;">
+                        <%= recipe.title %>
+                    </p>
+                </div><!-- / project-info-box -->
 
-            <div class="project-info-box mt-0 mb-0">
-                <p class="mb-0" style="font-size:16px ">
-                    <a href="/like/<%= recipe._id %>"><img src="../views/images/like.png" name="likeRecipe" id="likeRecipe" style="width:30px;height:30px;"></img></a>
-                    <%=   recipe.like%>        likes 
+                <div class="project-info-box">
+                    <p style="font-size:16px"><b>Prep Time:</b>
+                        <%= recipe.prepareTime %> mins
+                    </p>
+                    <p style="font-size:16px"><b>Cook Time:</b>
+                        <%= recipe.cookingTime %> mins
+                    </p>
+                    <p style="font-size:16px"><b>Difficulty:</b>
+                        <%= recipe.difficultLevel %>
+                    </p>
+                    <p style="font-size:16px"><b>Author: </b>
+                        <%= username %>
+                    </p>
+                </div><!-- / project-info-box -->
 
-                    <% console.log(error) %>
-                    <% if(error && error.length > 0) { %>
-                        <div class="alert alert-danger" role="alert">
-                            <%= error %>
-                        </div>
-                    <% } %>
-                    
-                    <% if(info && info.length > 0) { %>
-                        <div class="alert alert-info" role="alert">
-                            <%= info %>
-                        </div>
-                    <% } %>
-                </p>
-            </div>
-            <!-- / project-info-box -->
-        </div><!-- / column -->
-        <div class="col-md-7">
-            <div id="myCarousel" class="carousel slide">
-                <!-- 轮播（Carousel）指标 -->
-                <ol class="carousel-indicators">
-                    <% for(var i = 0; i < recipe.image.length; i++){%>
-                    <%if(i == 0){%>
-                    <li data-target="#myCarousel" data-slide-to="<%i%>" class="active"></li>
-                    <%}else{%>
-                    <li data-target="#myCarousel" data-slide-to="<%i%>"></li>
-                    <%}%>
-                    <%}%>
-                </ol>
-                <!-- 轮播（Carousel）项目 -->
-                <div class="carousel-inner">
-                    <%if (recipe.image[0].length == 1) {%>
-                    <div class="item active">
-                        <img src="<%= '/' + recipe.image %>" height="250px" />
-                    </div>
-                    <% }else {%>
-                    <% recipe.image.forEach(function (img) { %>
-                    <%if (img == recipe.image[0]) {%>
-                    <div class="item active">
-                        <img src="<%= '/' + img.path %>" height="250px" />
-                    </div>
-                    <% }else {%>
-                    <div class="item">
-                        <img src="<%= '/' + img.path %>" height="250px" />
-                    </div>
-                    <%}%>
-                    <%})%>
-                    <%}%>
+                <div class="project-info-box mt-0 mb-0">
+                    <p class="mb-0" style="font-size:16px ">
+                        <a href="/like/<%= recipe._id %>"><img src="../views/images/like.png" name="likeRecipe"
+                                id="likeRecipe" style="width:30px;height:30px;"></img></a>
+                        <%= recipe.like%> likes
 
+                            <% console.log(error) %>
+                                <% if(error && error.length> 0) { %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %>
+                                    </div>
+                                    <% } %>
+
+                                        <% if(info && info.length> 0) { %>
+                                            <div class="alert alert-info" role="alert">
+                                                <%= info %>
+                                            </div>
+                                            <% } %>
+                    </p>
                 </div>
-                <!-- 轮播（Carousel）导航 -->
-                <a class="carousel-control left" href="#myCarousel"
-                   data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
-                <a class="carousel-control right" href="#myCarousel"
-                   data-slide="next">&rsaquo;</a>
-            </div>
-            <div class="project-info-box">
-                <p style="font-size:16px">
-                    <b>Categories: </b> <% for (var i = 0; i < recipe.category.length; i++) { %>
-                    <%= recipe.category[i]  %>
-                    <% } %>
-                </p>
+                <!-- / project-info-box -->
+            </div><!-- / column -->
+            <div class="col-md-7">
+                <div id="myCarousel" class="carousel slide">
+                    <!-- 轮播（Carousel）指标 -->
+                    <ol class="carousel-indicators">
+                        <% for(var i=0; i < recipe.image.length; i++){%>
+                            <%if(i==0){%>
+                                <li data-target="#myCarousel" data-slide-to="<%i%>" class="active"></li>
+                                <%}else{%>
+                                    <li data-target="#myCarousel" data-slide-to="<%i%>"></li>
+                                    <%}%>
+                                        <%}%>
+                    </ol>
+                    <!-- 轮播（Carousel）项目 -->
+                    <div class="carousel-inner">
+                        <%if (recipe.image[0].length==1) {%>
+                            <div class="item active">
+                                <img src="<%= '/' + recipe.image %>" height="250px" />
+                            </div>
+                            <% }else {%>
+                                <% recipe.image.forEach(function (img) { %>
+                                    <%if (img==recipe.image[0]) {%>
+                                        <div class="item active">
+                                            <img src="<%= '/' + img.path %>" height="250px" />
+                                        </div>
+                                        <% }else {%>
+                                            <div class="item">
+                                                <img src="<%= '/' + img.path %>" height="250px" />
+                                            </div>
+                                            <%}%>
+                                                <%})%>
+                                                    <%}%>
 
-            </div><!-- / project-info-box -->
-        </div><!-- / column -->
-    </div>
-    <div class="ingredient-box">
-        <p style="font-size:16px"><b>Ingredients:</b> <%= recipe.ingredient%></p>
-    </div>
-    <div class="instruction-box">
-        <p style="font-size:16px;"><b>Instructions: </b> </p>
-        <p1 style="font-size:16px;"><%- recipe.cookingSteps %></p1>
-    </div>
-</div>
+                    </div>
+                    <!-- 轮播（Carousel）导航 -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev"> <span _ngcontent-c3=""
+                            aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                </div>
+                <div class="project-info-box">
+                    <p style="font-size:16px">
+                        <b>Categories: </b>
+                        <% for (var i=0; i < recipe.category.length; i++) { %>
+                            <%= recipe.category[i] %>
+                                <% } %>
+                    </p>
 
-<%- include('../_partial/_footer') -%>
+                </div><!-- / project-info-box -->
+            </div><!-- / column -->
+        </div>
+        <div class="ingredient-box">
+            <p style="font-size:16px"><b>Ingredients:</b>
+                <%= recipe.ingredient%>
+            </p>
+        </div>
+        <div class="instruction-box">
+            <p style="font-size:16px;"><b>Instructions: </b> </p>
+            <p1 style="font-size:16px;">
+                <%- recipe.cookingSteps %>
+            </p1>
+        </div>
+    </div>
+
+    <%- include('../_partial/_footer') -%>

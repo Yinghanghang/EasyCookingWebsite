@@ -9,7 +9,7 @@ var recipeSchema = mongoose.Schema({
     cookingSteps: { type: String, require: false },
     image: { type: Array, require: false, unique: false },
 /*    username: { type: String, require: false },  //show username of display  */
-    userID: { type: mongoose.Schema.Types.ObjectId, require: false, unique: false },
+    userID: { type: mongoose.Schema.Types.ObjectId, require: false, unique: false }, // ObjectId means reference to an id
     difficultLevel: { type: String, require: false },
     like: { type: Number, require: false, default: 0 },
     createAt: { type: Date, default: Date.now }
