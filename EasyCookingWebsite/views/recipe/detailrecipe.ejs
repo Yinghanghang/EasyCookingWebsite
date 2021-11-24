@@ -18,7 +18,19 @@
                     <a href="../../recipes/like/<%= recipe._id %>"><img src="/views/images/like.png" name="likeRecipe" id="likeRecipe" style="width:30px;height:30px;"/></a>
                     <%=   recipe.like%>        likes 
                 </p>
-            </div><!-- / project-info-box -->
+                <% if(error && error.length > 0) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                
+                <% if(info && info.length > 0) { %>
+                    <div class="alert alert-info" role="alert">
+                        <%= info %>
+                    </div>
+                <% } %>
+            </div>
+            <!-- / project-info-box -->
         </div><!-- / column -->
         <div class="col-md-7">
             <div id="myCarousel" class="carousel slide">

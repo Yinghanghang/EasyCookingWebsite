@@ -110,7 +110,16 @@ router.post("/signup", function (req, res, next) {
 router.get("/profile", function (req, res) {
     User.findById(req.user._id, function (err, user) {
         if (err) { console.log(err); }
-        res.render("user/profile", { user: user });
+        var userLike = user.like;
+        Recipe.find({'_id': { $in: userLike }}, function(err, recipes) {
+            var recipeObj = [];
+            for (var i = 0; i < recipes.length; i++) {
+                var recipe = recipes[i];
+                recipeObj.push(recipe);
+                console.log(recipe);
+            }
+            res.render("user/profile", { user: user, recipe: recipeObj });
+        });
     });
 });
 
@@ -121,7 +130,6 @@ router.get("/like/:recipeId", function (req, res) {
         User.findById(recipe.userID).exec(function (err, user) {
             if (err) { console.log(err); }   
             name = user.username;
-            //console.log( "123" + req.flash('error'));
             res.render("home/detail", { recipe: recipe, username: name ,  info: "Please login to like recipes." });
         });
     });
@@ -133,6 +141,7 @@ router.get("/like/:recipeId", function (req, res) {
 router.get("/home/:recipeId", function (req, res) {
     Recipe.findById(req.params.recipeId).exec(function (err, recipe) {
         if (err) { console.log(err); }
+        //console.log(recipe);
         User.findById(recipe.userID).exec(function (err, user) {
             if (err) { console.log(err); }   
             name = user.username;

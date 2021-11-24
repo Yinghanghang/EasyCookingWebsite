@@ -207,6 +207,21 @@ router.post("/update", upload.array('image', 12), async function (req, res) {
 router.get("/delete/:recipeId", function (req, res) {
     Recipe.findByIdAndDelete(req.params.recipeId).exec(function (err, recipe) {
         if (err) { console.log(err); }
+        User.find().exec(function (err, users){
+            for(var j = 0; j < users.length; j++) {
+                var user = users[j];
+                var userLike = user.like;
+                for (var i = 0; i < userLike.length; i++) {
+                    if (userLike[i] ==  req.params.recipeId) { 
+                        userLike.splice(i, 1);                   
+                        break;
+                    }
+                }
+                user.like = userLike;
+                user.save();
+            }
+                       
+        });
         res.redirect("/recipes");
     });
 });
@@ -235,7 +250,7 @@ router.get("/like/:recipeId", function (req, res) {
         var currentUserLike = currentUser.like;
         var isAlreadyLike = false;
         for (var i = 0; i < currentUserLike.length; i++) {
-            if (JSON.stringify(currentUserLike[i]) ==  JSON.stringify(currentRecipe)) { //req.params.recipeId)
+            if (currentUserLike[i] == req.params.recipeId) { 
                 isAlreadyLike = true;
                 break;
             }
@@ -248,7 +263,7 @@ router.get("/like/:recipeId", function (req, res) {
             currentUser.firstname = currentUser.firstname;
             currentUser.lastname = currentUser.lastname;
             currentUser.createdAt = currentUser.createdAt;
-            currentUser.like.push(currentRecipe); //currentRecipe._id
+            currentUser.like.push(currentRecipe._id); 
 
             // update recipe
             recipe.title = currentRecipe.title;
@@ -268,7 +283,8 @@ router.get("/like/:recipeId", function (req, res) {
             let saveUser = await currentUser.save();
             console.log("saveUser", saveUser);
         } else {
-            console.log("Already like this recipe!!!");
+            console.log("Already liked this recipe!");
+            req.flash("info", "Already liked this recipe!");
         }
         res.redirect("../../recipes/detail/" + req.params.recipeId);
     });
