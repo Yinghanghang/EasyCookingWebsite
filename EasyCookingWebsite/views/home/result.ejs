@@ -38,15 +38,15 @@
                 <!-- List all the recipes -->
             <% recipes.forEach(function(recipe) { %>
                 <div class="col-sm-4 col-md-6">
-                    <div class="thumbnail">
+                    <div class=" crop thumbnail">
                         <% if(recipe.image != null) {%>
                             <% image_url = (typeof recipe.image[0] === 'string') ? recipe.image[0] : recipe.image[0].path %>
 
                             <% if(currentUser != null){ %>           
-                                <a href="/recipes/detail/<%= recipe._id %>"><img src="<%= '/' + image_url %>" height="250px"></a>
+                                <a href="/recipes/detail/<%= recipe._id %>"><img src="<%= '/' + image_url %>" alt="Image" ></a>
                                 <%}%>
                             <% if(currentUser == null){ %>
-                                    <a href="/home/<%= recipe._id %>"><img src="<%= '/' + image_url %>" height="250px"></a>
+                                    <a href="/home/<%= recipe._id %>"><img src="<%= '/' + image_url %>" alt="Image"></a>
                                 <%}%>  
 
                         <% }else{ %>
@@ -63,16 +63,15 @@
                                 <%}%>  
                         <% } %>
 
-                        <div class="caption">
 
                             <% if(currentUser != null){ %>           
-                                    <a href="/recipes/detail/<%= recipe._id %>"><h3 style="text-align:center"><%= recipe.title %></h3></a>
+                                    <a href="/recipes/detail/<%= recipe._id %>"><h3 style="text-align:center; color: black"><%= recipe.title %></h3></a>
                                 <%}%>
                             <% if(currentUser == null){ %>
-                                    <a href="/home/<%= recipe._id %>"><h3 style="text-align:center"><%= recipe.title %></h3></a>
+                                    <a href="/home/<%= recipe._id %>"><h3 style="text-align:center; color: black"><%= recipe.title %></h3></a>
                                 <%}%>  
                    
-                        </div>
+
                     </div>
                 </div>
                 <% }) %>

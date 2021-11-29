@@ -35,7 +35,7 @@ router.post("/result", function (req, res) {
 });
 
 router.get("/result/:category", function (req, res) {
-    Recipe.find({category : req.params.category}).exec(function (err, recipe) {
+    Recipe.find({category : req.params.category}).sort({ like: -1}).exec(function (err, recipe) {
         if (err) { console.log(err); }
         //console.log(req.params.category);
         res.render("home/result", { recipes: recipe, category: req.params.category });

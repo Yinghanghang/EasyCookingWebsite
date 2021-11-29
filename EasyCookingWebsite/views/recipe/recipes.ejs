@@ -10,7 +10,7 @@
 <!-- List all the recipes. variable recipes is the first variable in {recipes: recipes} in recipe.js -->
 <% recipes.forEach(function(recipe) { %>
     <div class="col-sm-4 col-md-4">
-        <div class="thumbnail">
+        <div class=" croprecipe thumbnail">
             <% if(recipe.image != null) {%>
                 <% image_url = (typeof recipe.image[0] === 'string') ? recipe.image[0] : recipe.image[0].path %>
                 <a href="recipes/detail/<%= recipe._id %>"> <img src="<%= '/' + image_url %>" height="250px" ></a>

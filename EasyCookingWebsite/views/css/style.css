@@ -378,3 +378,24 @@ address { line-height: 2; }
 	.tm-banner-title { font-size: 2.8em; }
 }
 
+/*images with the same width*/
+.crop {
+    height: 350px;
+    /*width: 400px;*/
+    overflow: hidden;
+}
+.crop img {
+    height: auto;
+    width: 100%;
+}
+
+.croprecipe {
+    height: 400px;
+    /*width: 400px;*/
+    overflow: hidden;
+}
+.croprecipe img {
+    height: auto;
+    width: 100%;
+}
+
